@@ -1,27 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>DualDn: Dual-domain Denoising via Differentiable ISP</title>
-    <link rel="icon" type="image/x-icon" href="static/images/noise.svg">
-    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-    rel="stylesheet">
+  <meta charset="utf-8">
+  <title>DualDn: Dual-domain Denoising via Differentiable ISP</title>
+  <link rel="icon" type="image/x-icon" href="static/images/noise.svg">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
 
-    <link rel="stylesheet" href="static/css/bulma.min.css">
-    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
-    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
-    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
-    <link rel="stylesheet"
-    href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-    <link rel="stylesheet" href="static/css/index.css">
-    <link href="static/css/twentytwenty-no-compass.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <link href="static/css/twentytwenty-no-compass.css" rel="stylesheet" type="text/css" />
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
-    <script defer src="static/js/fontawesome.all.min.js"></script>
-    <script src="static/js/bulma-carousel.min.js"></script>
-    <script src="static/js/bulma-slider.min.js"></script>
-    <script src="static/js/index.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+  <script src="static/js/video_comparison.js"></script>
 </head>
 
 <body>
@@ -110,14 +111,16 @@
   <section class="hero teaser">
     <div class="container is-max-desktop">
       <div class="columns is-centered">
-        <div class="column is-10">
-        <div class="twentytwenty-container" data="ISP-ours">
-          <img src="static/images/Others.gif" />
-          <img src="static/images/Ours.gif" />
-        </div>
+        <div class="column is-24">
+          <div>
+            <video class="video" id="Teaser"  width="50%"  loop playsinline autoPlay muted src="./static/videos/teaser.mp4" onplay="resizeAndPlay(this)"></video>
+            <canvas width="150" height="150" class="videoMerge" id="TeaserMerge"></canvas>
+            </div>
         <h2 class="subtitle has-text-centered">
-          Illustrating the generalizability of our dual-domain denoising. Slide for comparison.
-          Notice that DualDn is only trained on synthetic images, and outperforms commercial denoising algorithms on 3 smartphone cameras with different ISOs. 
+          Illustrating the generalizability of our <b>DualDn</b>.  Slide for comparison. <br>
+          During testing, 3 Camera ISPs (left) with built-in commercial denoising are worser than <b>DualDn</b> (right). <br>
+          <small>[Notice that <b>DualDn</b> is only trained on synthetic images, without using any images from these cameras or ISPs during training.]</small>
+          
         </h2>
       </div>
     </div>
