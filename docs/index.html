@@ -113,12 +113,11 @@
       <div class="columns is-centered">
         <div class="column is-24">
           <div>
-            <video class="video" id="Teaser"  width="50%"  loop playsinline autoPlay muted src="static/videos/teaser.mp4" onplay="resizeAndPlay(this)"></video>
+            <video class="video" id="Teaser"  width="50%"  loop playsinline autoPlay muted src="./static/videos/teaser.mp4" onplay="resizeAndPlay(this)"></video>
             <canvas width="150" height="150" class="videoMerge" id="TeaserMerge"></canvas>
             </div>
         <h2 class="subtitle has-text-centered">
-          Illustrating the generalizability of our <b>DualDn</b>.  Slide for comparison. <br>
-          During testing, 3 Camera ISPs (left) with built-in commercial denoising are worser than <b>DualDn</b> (right). <br>
+          <b>Commercial ISPs</b> <img src="static/images/vs.svg" style="vertical-align: middle; height: 4ex;" /> <b>Our DualDn</b> <br>
           <small>[Notice that <b>DualDn</b> is only trained on synthetic images, without using any images from these cameras or ISPs during training.]</small>
           
         </h2>
@@ -136,7 +135,7 @@
           <h2 class="title is-3">Abstract</h2>
           <div class="columns is-centered">
             <div class="column is-10">
-              <img src="static/images/intro.png" />
+              <img src="static/images/intro.svg" />
             </div>
           </div>
           <div class="content has-text-justified">
