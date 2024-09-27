@@ -27,6 +27,18 @@
 
 <body>
 
+<div class="columns is-centered" style="margin-top: 0px; margin-bottom: -25px;">
+  <div class="oval-background">
+      <span style="font-family: Comic Sans MS, 'Noto Sans'; font-size: 20px;">
+        <img src="static/images/idea.svg" style="vertical-align: bottom; height: 3.25ex;" />
+        <b><div class="tooltip">FIRST<span class="tooltiptext"><span style="font-family:'Noto Sans', sans-serif; font-size: 15px">First none-learning-based denoising was proposed in 2013.</span></div></b>
+        <div class="tooltip">Learning-based<span class="tooltiptext"><span style="font-family:'Noto Sans', sans-serif; font-size: 15px"><b>End-to-end optimizing.</b></span></div>
+        <div class="tooltip">Dual-domain<span class="tooltiptext"><span style="font-family:'Noto Sans', sans-serif; font-size: 15px"><b>Raw denoiser adapts to noise variations and sRGB denoiser adapts to ISP variations.</b></span></div>
+        <div class="tooltip">Denoising Paradigm.<span class="tooltiptext"><span style="font-family:'Noto Sans', sans-serif; font-size: 15px"><b>Trained with synthetic images, DualDn can successfully generalize to real-captured images with high-quality denoising.</b></span></div>
+      </span>
+  </div>
+</div>
+
 <section class="hero">
       <div class="hero-body">
         <div class="container is-max-desktop">
@@ -40,7 +52,7 @@
                 <span class="author-block">
                   Yujin Wang<sup>1,†</sup>,</span>
                 <span class="author-block">
-                  <a href="https://tangeego.github.io">Shiqi Chen</a><sup>2</sup>,</span>
+                  <a href="https://tangeego.github.io">Shiqi Chen</a><sup>3</sup>,</span>
                 <span class="author-block">
                   Fan Zhang<sup>1</sup>,</span>
                 <span class="author-block">
@@ -51,8 +63,8 @@
   
                     <div class="is-size-5 publication-authors">
                       <span class="author-block"><sup>1</sup>Shanghai AI Laboratory,</span>
-                      <span class="author-block"><sup>2</sup>Zhejiang University,</span>
-                      <span class="author-block"><sup>3</sup>The Chinese University of Hong Kong</span>
+                      <span class="author-block"><sup>2</sup>The Chinese University of Hong Kong,</span>
+                      <span class="author-block"><sup>3</sup>Zhejiang University</span>
                       <span class="eql-cntrb"><small><br><sup>†</sup>Indicates Corresponding Author</small></span>
                     </div>
   
@@ -65,7 +77,7 @@
                           <span class="icon">
                             <i class="fas fa-file-pdf"></i>
                           </span>
-                          <span>Paper (coming soon)</span>
+                          <span>Paper</span>
                         </a>
                       </span>
   
@@ -85,7 +97,7 @@
                           <span class="icon">
                             <i class="fab fa-github"></i>
                           </span>
-                          <span>Code (coming soon)</span>
+                          <span>Code (coming within 2 weeks)</span>
                         </a>
                       </span>
   
@@ -105,7 +117,7 @@
                         <span class="icon">
                           <i class="far fa-images"></i>
                         </span>
-                        <span>Data (coming soon)</span>
+                        <span>Data (coming within 2 weeks)</span>
                       </a>
                     </span> 
 
@@ -117,10 +129,10 @@
     </div>
 </section>
   
-  
   <!-- Teaser video-->
   <section class="hero teaser">
-    <div class="container is-max-desktop">
+    <div class="container is-max-desktop" style="margin-top: -60px;">
+      <!-- <h2 class="title is-3"style="text-align: center;margin-top: 30px; margin-bottom: -25px;">Directly generlize to unseen smartphone cameras</h2> -->
       <div class="columns is-centered">
         <div class="column is-24">
           <div>
@@ -138,25 +150,52 @@
   </section>
   <!-- End teaser video -->
   
-  <!-- Paper abstract -->
-  <section class="section hero">
-    <div class="container is-max-desktop">
+  <!-- <hr> -->
+  
+<!-- Youtube video -->
+<section class="hero is-small" style="margin-top: 50px;">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3" style="margin-top: 10px;"><img src="static/images/check.svg" style="vertical-align: top; height: 1ex;"/> Existing Problem</h2>
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
-          <h2 class="title is-3">Abstract</h2>
-          <div class="columns is-centered">
+          <video poster="" id="tree" autoplay controls muted loop height="100%">
+            <!-- Your video here -->
+            <source src="./static/videos/Toy Example.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- Paper abstract -->
+  <section class="hero is-small">
+    <div class="hero-body">
+      <div class="container">
+          <h2 class="title is-3"><img src="static/images/check.svg" style="vertical-align: top; height: 1ex;"/> Core Design</h2>
+          <div class="columns is-centered has-text-centered">
             <div class="column is-10">
               <img src="static/images/intro.svg" />
             </div>
           </div>
-          <div class="content has-text-justified">
-            <p>
-              Image denoising is a critical step in the Image Signal Processor (ISP) of a camera. There are two typical ways to inject a denoiser into the ISP pipeline: a raw domain denoiser that is directly applied to captured raw frames, and an sRGB domain denoiser that is applied to the sRGB image output by the ISP. However, both approaches have their limitations. The residual noise from the raw-domain denoising will be amplified by the ISP pipeline, and the sRGB domain cannot handle spatially varying noise as it only sees noise distorted by ISP processing. As a result, most raw-domain or sRGB-domain denoising works only for specific noise distributions and ISP configurations.
-To address these challenges, we propose DualDn, a novel learning-based dual-domain denoising. Unlike previous single-domain denoising, DualDn consists of two denoising networks, one in the raw domain and one in the sRGB domain. The raw domain denoising can adapt to spatially varying noise levels, and the sRGB domain denoising can remove the residual noise amplified by the ISP. Both denoising networks are connected with a differentiable ISP, which is trained end-to-end and discarded during the inference stage. With this design, DualDn achieves greater generalizability compared to most learning-based denoising, as it can adapt to different unseen noises, ISP parameters, and even novel ISP pipelines.
-Experiments show that DualDn achieves state-of-the-art performance and can adapt to different denoising network architectures. Moreover, DualDn can be used as a plug-and-play denoising module with real cameras without retraining, and still demonstrate better performance than commercial on-camera denoising, further showing its generalization ability.
-            </p>
+          <div class="columns is-centered">
+            <div class="column is-6">
+              <p>
+                There are two typical ways to inject a denoiser into the Image Signal Processing (ISP) pipeline:
+                applying a denoiser directly to captured raw frames (raw domain) or to the ISP's output sRGB images (sRGB domain).
+                <br>
+                However, both approaches have their limitations.
+                Residual noise from raw-domain denoising can be amplified by the subsequent ISP processing, and the sRGB domain struggles to handle spatially varying noise since it only sees noise distorted by the ISP. 
+                Consequently, most raw or sRGB domain denoising works only for specific noise distributions and ISP configurations. 
+                <br>
+                Unlike previous single-domain denoising, DualDn consists of two denoising networks: one in the raw domain and one in the sRGB domain.
+                The raw domain denoising adapts to sensor-specific noise as well as spatially varying noise levels, while the sRGB domain denoising adapts to ISP variations and removes residual noise amplified by the ISP.
+                Both denoising networks are connected with a differentiable ISP, which is trained end-to-end and discarded during the inference stage.
+              </p>
+            </div>
           </div>
-        </div>
       </div>
     </div>
   </section>
@@ -170,7 +209,7 @@ Experiments show that DualDn achieves state-of-the-art performance and can adapt
     <pre><code>@article{li2024dualdn,
       title={DualDn: Dual-domain Denoising via Differentiable ISP}, 
       author={Ruikang Li and Yujin Wang and Shiqi Chen and Fan Zhang and Jinwei Gu and Tianfan Xue},
-      journal={arXiv preprint},
+      booktitle={European conference on computer vision},
       year={2024}
 }</code></pre>
   </div>
@@ -182,14 +221,12 @@ Experiments show that DualDn achieves state-of-the-art performance and can adapt
 <div class="container">
   <div class="columns is-centered">
     <div class="column is-8">
-      <div class="content">
-
+      <div class="content" style="text-align: center;">
         <p>
-          This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
-          You are free to borrow the of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+          This website was modified from <a href="https://nerfies.github.io" target="_blank">Nerfies</a>. Thanks for sharing this fantastic template. <br> 
+          Also, this website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
           Commons Attribution-ShareAlike 4.0 International License</a>.
         </p>
-
       </div>
     </div>
   </div>
