@@ -2,6 +2,55 @@ body {
   font-family: 'Noto Sans', sans-serif;
 }
 
+.oval-background {
+  display: inline-block; /* Make the element fit the content */
+  background-color: #69246bc6; /* Background color */
+  color:white;
+  padding: 5px 30px; /* Padding to create space around the text */
+  border: 2px solid black; 
+  border-radius: 0px 0px 40px 40px; /* Creates the oval shape */
+  text-align: center; /* Center the text */
+  margin: 0px; /* Optional: spacing around the element */
+}
+
+hr {
+  border: none; /* Remove default border */
+  height: 2px; /* Set the height of the line */
+  border-top: 2px dotted black; /* Set the color of the line */
+  width: 66%; /* Make the line span the full width */
+  margin: 10px auto 0px auto; /* Add some margin above and below */
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  max-width: none;
+  background-color: rgba(0, 0, 0, 0);
+  color: #003456;
+  text-align: center;
+  border-radius: 6px;
+  padding: 10px;
+  position: absolute;
+  z-index: 1;
+  white-space: nowrap;
+
+  /* Position the tooltip above the word */
+  top: 75%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Show the tooltip when hovering */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
 
 .footer .icon-link {
     font-size: 25px;
