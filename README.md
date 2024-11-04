@@ -7,6 +7,7 @@
 ### [Project Page](https://openimaginglab.github.io/DualDn/) <br>
 
 Ruikang Li, Yujin Wang, [Shiqi Chen](https://tangeego.github.io/), Fan Zhang, [Jinwei Gu](https://www.gujinwei.org/), [Tianfan Xue](https://tianfan.info/) <br><br>
+
 #### News
 - **Sept 29, 2024:** Paper accepted at ECCV 2024 😊:
 - **Nov 4, 2024:** Code Released 🌹:
@@ -20,6 +21,7 @@ Unlike previous single-domain denoising, DualDn consists of two denoising networ
 
 ## Network Architecture
 
-<img src = "docs/static/images/intro.svg"  width="100%">
+<img src = "docs/static/images/intro.svg"  width="60%">
+
 
 ## Training and Evaluation
