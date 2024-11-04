@@ -1,4 +1,4 @@
-# DualDn: Dual-domain Denoising via Differentiable ISP
+# [ECCV2024] DualDn: <br> Dual-domain Denoising via Differentiable ISP
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/dualdn-dual-domain-denoising-via/image-denoising-on-dnd)](https://paperswithcode.com/sota/image-denoising-on-dnd?p=dualdn-dual-domain-denoising-via)
 
 [![ECCV](https://img.shields.io/badge/ECCV-2024-B762C1)](https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/07547.pdf)
