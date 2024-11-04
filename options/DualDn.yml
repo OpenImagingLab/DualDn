@@ -1,0 +1,170 @@
+# general settings
+name: DualDn # add 'debug' in name for debug mode
+model_type: DualDn_Model 
+scale: 1
+num_gpu: 1  # set num_gpu: [0]/[auto] for [cpu]/[auto] mode
+manual_seed: 100  # set manual_seed: [None] for random seed
+
+##* dataset and data loader settings
+datasets:
+  train:
+    name: TrainSet 
+    type: DualDn_Dataset
+    file_from_list: true # [true] for selected noise-free 200 raw images for training, [false] for the entire Adobe-FiveK 5000 raw images for training.
+    dataset_type: Synthetic # For DualDn, we only use [Synthetic] images for training
+    data_path: datasets/fivek
+    dataset_enlarge_ratio: 1 # default [1]
+
+    patch_size: 256
+    syn_noise: 
+      prepocess: false
+      noise_model: 'gaussian_poisson' # [gaussian], [poisson], [gaussian_poisson], [heteroscedastic_gaussian]
+      noise_params: 4
+      noise_level:  # [None] for random noise_level
+      K_min: 0.0002
+      K_max: 0.02
+      saturation_level: 1.0
+    syn_isp:
+      alpha:  # [None] for random alpha between (alpha_min) and (alpha_max)
+      alpha_min: 0  # default [0]
+      alpha_max: 1  # default [1]
+      final_stage: 'tone_mapping' # [white_balance], [demosaic], [rgb_to_srgb], [gamma], [tone_mapping]
+      demosaic_type: 'AHD' # [nearest], [bilinear], [Malvar], [AHD]
+      gamma_type: 'Rec709' # [Rec709], [2.2]
+
+    std:
+    mean:
+    padding: true
+    random_crop: true
+    geometric_augs: true
+
+    io_backend:
+      type: disk
+
+    use_shuffle: true
+    num_worker_per_gpu: 8
+    batch_size_per_gpu: 2
+    dataset_enlarge_ratio: 1
+    prefetch_mode:   # [cpu] or [cuda], default [cpu] 
+    pin_memory: false
+
+  val:
+    name: ValSet
+    type: DualDn_Dataset
+    file_from_list: true
+    val_datasets: 
+      Synthetic:
+        mode: true
+        data_path: datasets/fivek
+      Real_captured:
+        mode: false
+        data_path: datasets/real_capture
+      DND:
+        mode: false
+        data_path: datasets/DND
+
+    patch_size: 512
+    syn_noise:
+      prepocess: false
+      noise_model: 'gaussian_poisson' # [gaussian], [poisson], [gaussian_poisson], [heteroscedastic_gaussian]
+      noise_params: 4
+      noise_level: [0.002,0.02]  # [noise_level1, noise_level2, ...] ONLY for synthetic images validating
+      saturation_level: 1.0
+    syn_isp:
+      alpha: [0,0.5]  # [alpha1, alpha2, ...] ONLY for synthetic images validating
+      final_stage: 'tone_mapping' # [white_balance], [demosaic], [rgb_to_srgb], [gamma], [tone_mapping]
+      demosaic_type: 'AHD' # [nearest], [bilinear], [Malvar], [AHD]
+      gamma_type: 'Rec709' # [Rec709], [2.2]
+
+    window_size: 8 # Check the image patch can be downsampled within log2_(window_size) times
+    crop_border: 16  # When processing 4k images, we have to crop into small blocks for inference, but due to demosaic interpolation, the boundaries of the blocks may be degraded, so we crop the edges of the blocks to ensure the same as human perception
+    central_crop: false  # [true] for fast validation with the central crop of images with the size of (patch_size, patch_size)
+
+    io_backend:
+      type: disk
+
+
+##* network structures
+network:
+  type: DualDn # [Raw_Dn], [sRGB_Dn], [DualDn]
+  with_noise_map: true
+  c: 64
+  backbone_type: 'Restormer'  # [DnCNN], [MIRNet_v2], [Restormer], [SwinIR]
+  bias: false
+  LayerNorm_type: 'BiasFree'
+
+
+##* path
+path:
+  pretrain_network: ~
+  strict_load: true
+  resume_state: ~ # Type resume_state's address or default [auto_resume]
+
+
+##* training settings
+train:
+  total_iter: 120000
+  warmup_iter: -1 # default [-1] for no warm up
+  use_grad_clip: true # default [true]
+  ft_tsa_only: 0
+
+  scheduler:
+    type: MultiStepRestartLR
+    milestones: [40000, 60000, 80000, 100000]      
+    gamma: 0.6 
+
+  optim_g:
+    type: AdamW
+    lr: !!float 1e-5
+    # weight_decay: !!float 1e-4
+    betas: [0.9, 0.999]
+
+  # losses
+  loss_type: 'Dual'  # [Raw], [sRGB], [Dual]
+  pixel_opt:
+    type: L1Loss
+    loss_weight: 1
+    reduction: mean
+
+
+##* validation settings
+val:
+  val_freq: !!float 10000
+  save_img: true
+  rgb2bgr: true
+  use_img: false
+
+  metrics:
+    psnr: 
+      type: calculate_psnr
+      crop_border: 0
+      test_y_channel: false
+    ssim:
+      type: calculate_ssim
+      crop_border: 0
+      test_y_channel: false
+    niqe:
+      type: calculate_niqe
+      crop_border: 0
+      convert_to: 'y'
+    lpips:
+      type: calculate_lpips
+      crop_border: 0
+      test_y_channel: false
+      spatial: false
+
+
+##* logging settings
+logger:
+  print_freq: 500
+  save_checkpoint_freq: !!float 10000
+  use_tb_logger: true
+  wandb:
+    project: ~
+    resume_id: ~
+
+
+##* dist training settings
+dist_params:
+  backend: nccl
+  port: 29500
