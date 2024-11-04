@@ -10,7 +10,7 @@ Ruikang Li, Yujin Wang, [Shiqi Chen](https://tangeego.github.io/), Fan Zhang, [J
 
 #### News
 - **Sept 29, 2024:** Paper accepted at ECCV 2024 😊:
-- **Nov 4, 2024:** Training and testing code released 🌹:
+- **Nov 4, 2024:** Training and inferencing code released 🌹:
 
 <hr />
 
