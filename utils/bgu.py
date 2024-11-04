@@ -1,3 +1,11 @@
+# -----------------------------------------------------------------------------------
+# [ECCV2024] DualDn: Dual-domain Denoising via Differentiable ISP 
+# [Homepage] https://openimaginglab.github.io/DualDn/
+# [Author] Originally Written by Ruikang Li, from MMLab, CUHK.
+# [Usage] A robust differentiable ISP convert raw images to sRGB images, can be used in end-to-end training.
+# [License] Absolutely open-source and free to use, please cite our paper if possible. :)
+# -----------------------------------------------------------------------------------
+
 import cv2
 import numpy as np
 from scipy.sparse import spdiags, vstack, hstack, block_diag, csc_matrix
