@@ -421,9 +421,9 @@ def bguFit(input_fs, output_fs):
 
 
 if __name__ == "__main__":
-    input_fs = cv2.imread('/ailab/user/liruikang/DualDn/utils/high_in.png')
-    output_fs = cv2.imread('/ailab/user/liruikang/DualDn/utils/high_out.png')
+    input_fs = cv2.imread('high_in.png')
+    output_fs = cv2.imread('high_out.png')
     gamma = bguFit(input_fs, output_fs)
     result_fs = bguSlice(gamma, input_fs)
     result = (np.clip(result_fs, 0, 1) * 255).astype(np.uint8)
-    cv2.imwrite('/ailab/user/liruikang/DualDn/utils/result.jpg',result)
+    cv2.imwrite('result.jpg',result)
