@@ -9,6 +9,7 @@ from .transforms import mod_crop, random_crop, random_augmentation
 from .file_client import FileClient
 from .color import bgr2ycbcr, rgb2ycbcr_pt
 from .pipeline import run_pipeline
+from .matlab_functions import imresize
 from .bundle_submissions import DND_bundle_submissions_raw, DND_bundle_submissions_srgb
 from .bgu import bguFit, bguSlice
 
