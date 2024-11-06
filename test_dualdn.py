@@ -254,7 +254,7 @@ def main():
     for test_loader in test_loaders:
         test_set_name = test_loader.dataset.dataset_type
         logger.info(f'Testing {test_set_name}...')
-        model.validation(test_loader, opt['iters'], None)
+        model.validation(test_loader, -1, None)
 
 
 if __name__ == '__main__':
