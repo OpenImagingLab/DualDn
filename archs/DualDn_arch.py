@@ -1,3 +1,10 @@
+# -----------------------------------------------------------------------------------
+# [ECCV2024] DualDn: Dual-domain Denoising via Differentiable ISP 
+# [Homepage] https://openimaginglab.github.io/DualDn/
+# [Author] Originally Written by Ruikang Li, from MMLab, CUHK.
+# [License] Absolutely open-source and free to use, please cite our paper if possible. :)
+# -----------------------------------------------------------------------------------
+
 import torch
 import torch.nn as nn
 from archs.backbone.restormer import Restormer
