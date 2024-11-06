@@ -89,7 +89,7 @@ network:
   type: DualDn # [Raw_Dn], [sRGB_Dn], [DualDn]
   with_noise_map: true
   c: 64
-  backbone_type: 'Restormer'  # [DnCNN], [MIRNet_v2], [Restormer], [SwinIR]
+  backbone_type: 'Restormer'  # [MIRNet_v2], [Restormer], [SwinIR]
   bias: false
   LayerNorm_type: 'BiasFree'
 
