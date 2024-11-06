@@ -26,4 +26,4 @@ Unlike previous single-domain denoising, DualDn consists of two denoising networ
 
 ## Training and Evaluation
 
-To be updated (04/11/2024 23:30)
+Last updated (07/11/2024 01:15)
