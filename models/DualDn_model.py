@@ -234,12 +234,12 @@ class DualDn_Model(BaseModel):
                 save_path = osp.join(self.opt['path']['visualization'], str(current_iter))
                 save_lq_sRGB_path = osp.join(save_path, 'noise_level_{:.4f}'.format(k), 'alpha_{:.2f}'.format(alpha), f'{self.index}_{current_iter}_lq.png')
                 save_gt_sRGB_path = osp.join(save_path, 'noise_level_{:.4f}'.format(k), 'alpha_{:.2f}'.format(alpha), f'{self.index}_{current_iter}_gt.png')
-                save_out_sRGB_path = osp.join(save_path, 'noise_level_{:.4f}'.format(k), 'alpha_{:.2f}'.format(alpha), f'{self.index}_{current_iter}.png')
+                save_out_sRGB_path = osp.join(save_path, 'noise_level_{:.4f}'.format(k), 'alpha_{:.2f}'.format(alpha), f'{self.index}_{current_iter}_ours.png')
             else:
                 save_path = self.opt['path']['visualization']
                 save_lq_sRGB_path = osp.join(save_path,'noise_level_{:.4f}'.format(k), 'alpha_{:.2f}'.format(alpha), f'{self.index}_lq.png')
                 save_gt_sRGB_path = osp.join(save_path,'noise_level_{:.4f}'.format(k), 'alpha_{:.2f}'.format(alpha), f'{self.index}_gt.png')
-                save_out_sRGB_path = osp.join(save_path,'noise_level_{:.4f}'.format(k), 'alpha_{:.2f}'.format(alpha), f'{self.index}.png')
+                save_out_sRGB_path = osp.join(save_path,'noise_level_{:.4f}'.format(k), 'alpha_{:.2f}'.format(alpha), f'{self.index}_ours.png')
 
             imwrite(lq_sRGB, save_lq_sRGB_path)
             imwrite(gt_sRGB, save_gt_sRGB_path)
@@ -335,12 +335,12 @@ class DualDn_Model(BaseModel):
                 save_path = osp.join(self.opt['path']['visualization'], str(current_iter))
                 save_lq_sRGB_path = osp.join(save_path, f'{self.index}_{current_iter}_lq.png')
                 save_ref_sRGB_path = osp.join(save_path, f'{self.index}_{current_iter}_ref.png')
-                save_out_sRGB_path = osp.join(save_path, f'{self.index}_{current_iter}.png')
+                save_out_sRGB_path = osp.join(save_path, f'{self.index}_{current_iter}_ours.png')
             else:
                 save_path = self.opt['path']['visualization']
                 save_lq_sRGB_path = osp.join(save_path, f'{self.index}_lq.png')
                 save_ref_sRGB_path = osp.join(save_path, f'{self.index}_ref.png')
-                save_out_sRGB_path = osp.join(save_path, f'{self.index}.png')
+                save_out_sRGB_path = osp.join(save_path, f'{self.index}_ours.png')
 
             imwrite(lq_sRGB, save_lq_sRGB_path)
             imwrite(ref_sRGB, save_ref_sRGB_path)
@@ -416,7 +416,7 @@ class DualDn_Model(BaseModel):
                 io.savemat(save_out_sRGB_path, {'Idenoised_crop':save_out_sRGB})
                 
                 out_sRGB = tensor2img([out_dict['out_sRGB']], rgb2bgr=True)
-                save_out_sRGB_path = osp.join(save_path,'visuals', '{}_{:0=2}_out.png'.format(img_ind, i+1))
+                save_out_sRGB_path = osp.join(save_path,'visuals', '{}_{:0=2}_ours.png'.format(img_ind, i+1))
                 imwrite(out_sRGB, save_out_sRGB_path)
 
         self.net_g.train()
