@@ -83,8 +83,10 @@ class Raw_Dn(nn.Module):
 
         if ref_sRGB != None: # Only for inference, to keep consistent with ref_sRGB's color
             bgu_gamma = bguFit(in_srgb, ref_sRGB)
-            in_srgb = bguSlice(bgu_gamma, in_srgb)
-            in_srgb = torch.from_numpy(in_srgb).float().cuda().permute(2,0,1).unsqueeze()
+            bgu_srgb = bguSlice(bgu_gamma, in_srgb)
+            bgu_gamma2 = bguFit(in_srgb, bgu_srgb) # Since ref_sRGB captured by original ISP contains visible noise, we use two iterations of BGU here to avoid the additional noise introduced by BGU.
+            bgu_srgb = bguSlice(bgu_gamma2, in_srgb)
+            in_srgb = torch.from_numpy(bgu_srgb).float().cuda().permute(2,0,1).unsqueeze()
 
         out_srgb = in_srgb
 
@@ -124,70 +126,14 @@ class sRGB_Dn(nn.Module):
 
         if ref_sRGB != None: # Only for inference, to keep consistent with ref_sRGB's color
             bgu_gamma = bguFit(in_srgb, ref_sRGB)
-            in_srgb = bguSlice(bgu_gamma, in_srgb)
-            in_srgb = torch.from_numpy(in_srgb).float().cuda().permute(2,0,1).unsqueeze()
+            bgu_srgb = bguSlice(bgu_gamma, in_srgb)
+            bgu_gamma2 = bguFit(in_srgb, bgu_srgb) # Since ref_sRGB captured by original ISP contains visible noise, we use two iterations of BGU here to avoid the additional noise introduced by BGU.
+            bgu_srgb = bguSlice(bgu_gamma2, in_srgb)
+            in_srgb = torch.from_numpy(bgu_srgb).float().cuda().permute(2,0,1).unsqueeze()
 
         srgb = self.conv_in(in_srgb)
         srgb = self.backbone(srgb)
         out_srgb = self.conv_out(srgb) + in_srgb
-
-        return out_raw, out_srgb
-
-
-@ARCH_REGISTRY.register()
-class DualDn_wo_noisemp(nn.Module):
-    def __init__(self, 
-        with_noise_map = True,
-        in_c = 4,
-        out_c = 3, 
-        c = 64,
-        backbone_type = 'Restormer',
-        bias = False,
-        LayerNorm_type = 'BiasFree'
-    ):
-
-        super(DualDn_wo_noisemp, self).__init__()
-        self.up = nn.PixelShuffle(upscale_factor=2)
-        self.down = nn.PixelUnshuffle(downscale_factor=2)
-        self.with_noise_map = with_noise_map
-        self.conv_in1 = nn.Conv2d(in_c, c, kernel_size=(1, 1), stride=(1, 1), bias=bias)
-        self.conv_out1 =  nn.Conv2d(c, in_c, kernel_size=(1, 1), stride=(1, 1), bias=bias)
-        self.conv_in2 = nn.Conv2d(out_c, c, kernel_size=(1, 1), stride=(1, 1), bias=bias)
-        self.conv_out2 =  nn.Conv2d(c, out_c, kernel_size=(1, 1), stride=(1, 1), bias=bias)
-        if backbone_type == 'Restormer':
-            self.backbone1 = Restormer(dim=c, num_blocks = [2,3,3,4], num_refinement_blocks = 2, heads = [1,2,4,8], ffn_expansion_factor = 2.66, bias = bias, LayerNorm_type = LayerNorm_type, dual_pixel_task = False)
-            self.backbone2 = Restormer(dim=c, num_blocks = [2,3,3,4], num_refinement_blocks = 2, heads = [1,2,4,8], ffn_expansion_factor = 2.66, bias = bias, LayerNorm_type = LayerNorm_type, dual_pixel_task = False)
-        elif backbone_type == 'SwinIR':
-            self.backbone1 = SwinIR(img_size=64, window_size=8, img_range=1., depths=[6, 6, 6, 6, 6, 6], embed_dim=c, num_heads=[6, 6, 6, 6, 6, 6], mlp_ratio=2)
-            self.backbone2 = SwinIR(img_size=128, window_size=8, img_range=1., depths=[6, 6, 6, 6, 6, 6], embed_dim=c, num_heads=[6, 6, 6, 6, 6, 6], mlp_ratio=2)
-        elif backbone_type == 'MIRNet_v2':
-            self.backbone1 = MIRNet_v2(n_feat=c, chan_factor=1.5, n_RRG=4, n_MRB=1, height=3, width=2, bias=bias)
-            self.backbone2 = MIRNet_v2(n_feat=c, chan_factor=1.5, n_RRG=4, n_MRB=1, height=3, width=2, bias=bias)
-
-    def forward(self, raw, colormask, wb_matrix, rgb_xyz_matrix, ref='D65', gamma_type='Rec709', demosaic_type='AHD',  k=None, sigma=None, alpha=0, final_stage='tone_mapping', ref_sRGB=None):
-
-        in_raw = self.down(raw)
-        colormask = self.down(colormask)
-
-        x = self.conv_in1(in_raw)
-        x = self.backbone1(x)
-        out_raw = self.conv_out1(x)+ in_raw
-
-        colormask = self.up(colormask)
-        out_raw = self.up(out_raw)
-
-        skip_srgb = run_pipeline(out_raw, {'color_mask':colormask, 'wb_matrix':wb_matrix, 'color_desc':'RGBG', 'rgb_xyz_matrix':rgb_xyz_matrix, 'ref':ref, 'gamma_type':gamma_type, 'demosaic_type':demosaic_type, 'alpha':alpha}, 'normal', final_stage)
-
-        if ref_sRGB != None: # Only for inference, to keep consistent with ref_sRGB's color
-            bgu_gamma = bguFit(skip_srgb, ref_sRGB)
-            skip_srgb = bguSlice(bgu_gamma, skip_srgb)
-            skip_srgb = torch.from_numpy(skip_srgb).float().cuda().permute(2,0,1).unsqueeze()
-
-        in_srgb = skip_srgb
-
-        srgb = self.conv_in2(in_srgb)
-        srgb = self.backbone2(srgb)
-        out_srgb = self.conv_out2(srgb) + skip_srgb
 
         return out_raw, out_srgb
 
@@ -256,9 +202,11 @@ class DualDn(nn.Module):
 
             if ref_sRGB != None: # Only for inference, to keep consistent with ref_sRGB's color
                 bgu_gamma = bguFit(skip_srgb, ref_sRGB)
-                skip_srgb = bguSlice(bgu_gamma, skip_srgb)
-                rgb_noise_map = bguSlice(bgu_gamma, rgb_noise_map)
-                skip_srgb = torch.from_numpy(skip_srgb).float().cuda().permute(2,0,1).unsqueeze(0)
+                bgu_srgb = bguSlice(bgu_gamma, skip_srgb)
+                bgu_gamma2 = bguFit(skip_srgb, bgu_srgb) # Since ref_sRGB captured by original ISP contains visible noise, we use two iterations of BGU here to avoid the additional noise introduced by BGU.
+                bgu_srgb = bguSlice(bgu_gamma2, skip_srgb)
+                rgb_noise_map = bguSlice(bgu_gamma2, rgb_noise_map)
+                skip_srgb = torch.from_numpy(bgu_srgb).float().cuda().permute(2,0,1).unsqueeze(0)
                 rgb_noise_map = torch.clamp(torch.from_numpy(rgb_noise_map).float().cuda().permute(2,0,1).unsqueeze(0), min=1e-3) # After BGU, there may be overflow, set bound.
 
             in_srgb = self.nm_fuse2([skip_srgb, rgb_noise_map])
@@ -268,8 +216,10 @@ class DualDn(nn.Module):
             
             if ref_sRGB != None: # Only for inference, to keep consistent with ref_sRGB's color
                 bgu_gamma = bguFit(skip_srgb, ref_sRGB)
-                skip_srgb = bguSlice(bgu_gamma, skip_srgb)
-                skip_srgb = torch.from_numpy(skip_srgb).cuda().permute(2,0,1).unsqueeze()
+                bgu_srgb = bguSlice(bgu_gamma, skip_srgb)
+                bgu_gamma2 = bguFit(skip_srgb, bgu_srgb) # Since ref_sRGB captured by original ISP contains visible noise, we use two iterations of BGU here to avoid the additional noise introduced by BGU.
+                bgu_srgb = bguSlice(bgu_gamma2, skip_srgb)
+                skip_srgb = torch.from_numpy(bgu_srgb).cuda().permute(2,0,1).unsqueeze()
             
             in_srgb = self.conv_in2(skip_srgb)
 
