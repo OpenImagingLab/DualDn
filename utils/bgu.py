@@ -405,10 +405,14 @@ def bguFit(input_fs, output_fs):
 
     if isinstance(input_fs, np.ndarray):
         input_fs = im2double(input_fs)
-        output_fs = im2double(output_fs)
     else:
         input_fs = np.transpose(np.squeeze(input_fs.cpu().numpy().astype(np.float64)), (1, 2, 0))
+    
+    if isinstance(output_fs, np.ndarray):
+        output_fs = im2double(output_fs)
+    else:
         output_fs = np.transpose(np.squeeze(output_fs.cpu().numpy().astype(np.float64)), (1, 2, 0))
+
     fh, fw = input_fs.shape[:2]
 
     input_ds = cv2.resize(input_fs, (fw//8, fh//8), interpolation=cv2.INTER_LANCZOS4) # INTER_LINEAR, INTER_CUBIC, INTER_AREA 
