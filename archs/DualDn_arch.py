@@ -84,6 +84,7 @@ class Raw_Dn(nn.Module):
         if ref_sRGB != None: # Only for inference, to keep consistent with ref_sRGB's color
             bgu_gamma = bguFit(in_srgb, ref_sRGB)
             bgu_srgb = bguSlice(bgu_gamma, in_srgb)
+            bgu_srgb = torch.from_numpy(bgu_srgb).float().cuda().permute(2,0,1).unsqueeze(0)
             bgu_gamma2 = bguFit(in_srgb, bgu_srgb) # Since ref_sRGB captured by original ISP contains visible noise, we use two iterations of BGU here to avoid the additional noise introduced by BGU.
             bgu_srgb = bguSlice(bgu_gamma2, in_srgb)
             in_srgb = torch.from_numpy(bgu_srgb).float().cuda().permute(2,0,1).unsqueeze()
@@ -127,6 +128,7 @@ class sRGB_Dn(nn.Module):
         if ref_sRGB != None: # Only for inference, to keep consistent with ref_sRGB's color
             bgu_gamma = bguFit(in_srgb, ref_sRGB)
             bgu_srgb = bguSlice(bgu_gamma, in_srgb)
+            bgu_srgb = torch.from_numpy(bgu_srgb).float().cuda().permute(2,0,1).unsqueeze(0)
             bgu_gamma2 = bguFit(in_srgb, bgu_srgb) # Since ref_sRGB captured by original ISP contains visible noise, we use two iterations of BGU here to avoid the additional noise introduced by BGU.
             bgu_srgb = bguSlice(bgu_gamma2, in_srgb)
             in_srgb = torch.from_numpy(bgu_srgb).float().cuda().permute(2,0,1).unsqueeze()
@@ -203,6 +205,7 @@ class DualDn(nn.Module):
             if ref_sRGB != None: # Only for inference, to keep consistent with ref_sRGB's color
                 bgu_gamma = bguFit(skip_srgb, ref_sRGB)
                 bgu_srgb = bguSlice(bgu_gamma, skip_srgb)
+                bgu_srgb = torch.from_numpy(bgu_srgb).float().cuda().permute(2,0,1).unsqueeze(0)
                 bgu_gamma2 = bguFit(skip_srgb, bgu_srgb) # Since ref_sRGB captured by original ISP contains visible noise, we use two iterations of BGU here to avoid the additional noise introduced by BGU.
                 bgu_srgb = bguSlice(bgu_gamma2, skip_srgb)
                 rgb_noise_map = bguSlice(bgu_gamma2, rgb_noise_map)
@@ -217,9 +220,10 @@ class DualDn(nn.Module):
             if ref_sRGB != None: # Only for inference, to keep consistent with ref_sRGB's color
                 bgu_gamma = bguFit(skip_srgb, ref_sRGB)
                 bgu_srgb = bguSlice(bgu_gamma, skip_srgb)
+                bgu_srgb = torch.from_numpy(bgu_srgb).float().cuda().permute(2,0,1).unsqueeze(0)
                 bgu_gamma2 = bguFit(skip_srgb, bgu_srgb) # Since ref_sRGB captured by original ISP contains visible noise, we use two iterations of BGU here to avoid the additional noise introduced by BGU.
                 bgu_srgb = bguSlice(bgu_gamma2, skip_srgb)
-                skip_srgb = torch.from_numpy(bgu_srgb).cuda().permute(2,0,1).unsqueeze()
+                skip_srgb = torch.from_numpy(bgu_srgb).float().cuda().permute(2,0,1).unsqueeze()
             
             in_srgb = self.conv_in2(skip_srgb)
 
