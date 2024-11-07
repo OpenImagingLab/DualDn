@@ -161,10 +161,18 @@ class DualDn_Dataset(data.Dataset):
                     img_ind = osp.splitext(osp.basename(RawPath))[0]
                     Raw = rawpy.imread(RawPath)
                     metadata = get_metadata(Raw, self.dataset_type)
+                    
                     gt_Raw = run_pipeline(torch.from_numpy(Raw.raw_image_visible.astype(np.float32)).unsqueeze(0).unsqueeze(0), \
                         {'color_mask':torch.from_numpy(metadata['color_mask']).unsqueeze(0).unsqueeze(0), 'black_level':metadata['black_level'], 'white_level':metadata ['white_level']}, 'raw', 'normal').squeeze(0).squeeze(0).unsqueeze(-1).numpy()
+                    
+                    ##* Flip Raw
+                    Flip = Raw.sizes.flip
+                    gt_Raw = np.expand_dims(fix_orientation(np.squeeze(gt_Raw, axis=-1), Flip), axis=-1)
+                    color_mask = fix_orientation(metadata['color_mask'], Flip)
+                    
                     lq_Raw = np.zeros(gt_Raw.shape).astype(np.float32)
                     ref_sRGB = np.zeros((lq_Raw.shape[0], lq_Raw.shape[1], 3)).astype(np.float32)
+                
                 elif self.dataset_type == 'Real_captured':
                     RawPath = self.paths[index]['RawPath']
                     img_ind = osp.splitext(osp.basename(RawPath))[0]
@@ -199,14 +207,24 @@ class DualDn_Dataset(data.Dataset):
                     # with open('./results/{}.json'.format(img_ind), 'w') as f:
                     #     json.dump(exifdata, f, indent=4)
                     
-                    ##* ref_sRGB with Origin Phone
-                    if self.bgu: # Whether to use BGU to align the color of the result with ref_sRGB
+                    ##* Flip Raw
+                    Flip = Raw.sizes.flip
+                    lq_Raw = np.expand_dims(fix_orientation(np.squeeze(lq_Raw, axis=-1), Flip), axis=-1)
+                    gt_Raw = np.zeros(lq_Raw.shape).astype(np.float32)
+                    color_mask = fix_orientation(metadata['color_mask'], Flip)
+                    
+                    ##* Whether to use BGU to align the color of the result with ref_sRGB
+                    if self.bgu: 
                         RootName = osp.basename(RawPath)
                         basename, _ = osp.splitext(RootName)
                         sRGBPath = osp.join(self.data_path, 'ref_sRGB', '{}.jpg'.format(basename))
                         ref_sRGB = imfrombytes(self.file_client.get(sRGBPath, 'ref_sRGB'), float32=True)
+                        ref_sRGB = un_binning(ref_sRGB, lq_Raw) # if original phone adopt binning, interpolate ref_sRGB images to its twice size
                     else:
                         ref_sRGB = np.zeros((lq_Raw.shape[0], lq_Raw.shape[1], 3)).astype(np.float32)
+                    
+                    ref_sRGB, gt_Raw, lq_Raw, color_mask = same_crop(ref_sRGB, gt_Raw, lq_Raw, color_mask) # crop raw images same with phone's sRGB images
+                
                 elif self.dataset_type == 'DND':
                     RawPath = self.paths[index]['RawPath']
                     img_ind = int(osp.basename(RawPath)[0:4]) - 1
@@ -232,13 +250,6 @@ class DualDn_Dataset(data.Dataset):
                     ref_sRGB = np.array(sRGBFile['InoisySRGB'][:]).swapaxes(1,2).transpose(1,2,0)
 
                 ##* consistency for validating
-                color_mask = metadata['color_mask']
-                if self.dataset_type == 'Real_captured':
-                    Flip = Raw.sizes.flip
-                    lq_Raw, gt_Raw = np.expand_dims(fix_orientation(np.squeeze(lq_Raw, axis=-1), Flip), axis=-1), np.expand_dims(fix_orientation(np.squeeze(gt_Raw, axis=-1), Flip), axis=-1)
-                    color_mask = fix_orientation(color_mask, Flip)
-                    ref_sRGB = un_binning(ref_sRGB, gt_Raw) # if original phone adopt binning, interpolate ref_sRGB images to its twice size
-                    ref_sRGB, gt_Raw, lq_Raw, color_mask = same_crop(ref_sRGB, gt_Raw, lq_Raw, color_mask) # crop raw images same with phone's sRGB images
                 if self.dataset_type == 'Real_captured' or self.dataset_type == 'Synthetic':
                     if self.patch_size != None:
                         h, w, _ = gt_Raw.shape
@@ -248,7 +259,10 @@ class DualDn_Dataset(data.Dataset):
                             gt_Raw, lq_Raw, ref_sRGB, color_mask = fixed_crop(gt_Raw, lq_Raw, ref_sRGB, color_mask, patch_size=self.patch_size, crop_border=self.crop_border, central_crop=self.central_crop, color_mask=color_mask)
                     else:
                         gt_Raw, lq_Raw, ref_sRGB, color_mask = window_crop(gt_Raw, lq_Raw, ref_sRGB, color_mask, window_size=self.window_size)
+                else:
+                    color_mask = metadata['color_mask']
 
+                ##* get noise profile
                 noise_model = NoiseModel(noise_model=self.syn_noise['noise_model'], include=self.syn_noise['noise_params'], K_fixed=self.syn_noise['noise_level'], seed=self.seed)
                 k, sigma, alpha = torch.zeros([1,1,1]), torch.zeros([1,1,1]), torch.zeros([1,1,1])
                 saturation_level = self.syn_noise['saturation_level'] 
