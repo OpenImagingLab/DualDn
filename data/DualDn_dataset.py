@@ -97,7 +97,9 @@ class DualDn_Dataset(data.Dataset):
         elif self.phase == 'val':
             self.window_size = data_opt['window_size']
             self.crop_border = data_opt['crop_border'] 
-            self.central_crop = data_opt['central_crop'] 
+            self.central_crop = data_opt['central_crop']
+            if self.dataset_type == 'Real_captured':
+                self.bgu = data_opt['val_datasets']['Real_captured']['BGU']
 
     def __getitem__(self, index):
 
@@ -198,10 +200,13 @@ class DualDn_Dataset(data.Dataset):
                     #     json.dump(exifdata, f, indent=4)
                     
                     ##* ref_sRGB with Origin Phone
-                    RootName = osp.basename(RawPath)
-                    basename, _ = osp.splitext(RootName)
-                    sRGBPath = osp.join(self.data_path, 'ref_sRGB', '{}.jpg'.format(basename))
-                    ref_sRGB = imfrombytes(self.file_client.get(sRGBPath, 'ref_sRGB'), float32=True)
+                    if self.bgu: # Whether to use BGU to align the color of the result with ref_sRGB
+                        RootName = osp.basename(RawPath)
+                        basename, _ = osp.splitext(RootName)
+                        sRGBPath = osp.join(self.data_path, 'ref_sRGB', '{}.jpg'.format(basename))
+                        ref_sRGB = imfrombytes(self.file_client.get(sRGBPath, 'ref_sRGB'), float32=True)
+                    else:
+                        ref_sRGB = np.zeros((lq_Raw.shape[0], lq_Raw.shape[1], 3)).astype(np.float32)
                 elif self.dataset_type == 'DND':
                     RawPath = self.paths[index]['RawPath']
                     img_ind = int(osp.basename(RawPath)[0:4]) - 1
