@@ -81,7 +81,7 @@ class Raw_Dn(nn.Module):
 
         in_srgb = run_pipeline(out_raw, {'color_mask':colormask, 'wb_matrix':wb_matrix, 'color_desc':'RGBG', 'rgb_xyz_matrix':rgb_xyz_matrix, 'ref':ref, 'gamma_type':gamma_type, 'demosaic_type':demosaic_type, 'alpha':alpha}, 'normal', final_stage)
 
-        if ref_sRGB != None: # Only for inference, to keep consistent with ref_sRGB's color
+        if ref_sRGB != None and (ref_sRGB != 0).all(): # Only for inference, to keep consistent with ref_sRGB's color
             bgu_gamma = bguFit(in_srgb, ref_sRGB)
             bgu_srgb = bguSlice(bgu_gamma, in_srgb)
             in_srgb = torch.from_numpy(bgu_srgb).float().cuda().permute(2,0,1).unsqueeze()
@@ -122,7 +122,7 @@ class sRGB_Dn(nn.Module):
 
         in_srgb = run_pipeline(out_raw, {'color_mask':colormask, 'wb_matrix':wb_matrix, 'color_desc':'RGBG', 'rgb_xyz_matrix':rgb_xyz_matrix, 'ref':ref, 'gamma_type':gamma_type, 'demosaic_type':demosaic_type, 'alpha':alpha}, 'normal', final_stage)
 
-        if ref_sRGB != None: # Only for inference, to keep consistent with ref_sRGB's color
+        if ref_sRGB != None and (ref_sRGB != 0).all(): # Only for inference, to keep consistent with ref_sRGB's color
             bgu_gamma = bguFit(in_srgb, ref_sRGB)
             bgu_srgb = bguSlice(bgu_gamma, in_srgb)
             in_srgb = torch.from_numpy(bgu_srgb).float().cuda().permute(2,0,1).unsqueeze()
@@ -196,7 +196,7 @@ class DualDn(nn.Module):
             rgb_noise_map = run_pipeline(rgb_noise_map, {'color_mask':colormask, 'wb_matrix':wb_matrix, 'color_desc':'RGBG', 'rgb_xyz_matrix':rgb_xyz_matrix, 'ref':ref, 'gamma_type':gamma_type, 'demosaic_type':demosaic_type, 'alpha':alpha}, 'normal', final_stage)
             skip_srgb = run_pipeline(out_raw, {'color_mask':colormask, 'wb_matrix':wb_matrix, 'color_desc':'RGBG', 'rgb_xyz_matrix':rgb_xyz_matrix, 'ref':ref, 'gamma_type':gamma_type, 'demosaic_type':demosaic_type, 'alpha':alpha}, 'normal', final_stage)
 
-            if ref_sRGB != None: # Only for inference, to keep consistent with ref_sRGB's color
+            if ref_sRGB != None and (ref_sRGB != 0).all(): # Only for inference, to keep consistent with ref_sRGB's color
                 bgu_gamma = bguFit(skip_srgb, ref_sRGB)
                 bgu_srgb = bguSlice(bgu_gamma, skip_srgb)
                 rgb_noise_map = bguSlice(bgu_gamma, rgb_noise_map)
@@ -208,7 +208,7 @@ class DualDn(nn.Module):
         else:
             skip_srgb = run_pipeline(out_raw, {'color_mask':colormask, 'wb_matrix':wb_matrix, 'color_desc':'RGBG', 'rgb_xyz_matrix':rgb_xyz_matrix, 'ref':ref, 'gamma_type':gamma_type, 'demosaic_type':demosaic_type, 'alpha':alpha}, 'normal', final_stage)
             
-            if ref_sRGB != None: # Only for inference, to keep consistent with ref_sRGB's color
+            if ref_sRGB != None and (ref_sRGB != 0).all(): # Only for inference, to keep consistent with ref_sRGB's color
                 bgu_gamma = bguFit(skip_srgb, ref_sRGB)
                 bgu_srgb = bguSlice(bgu_gamma, skip_srgb)
                 skip_srgb = torch.from_numpy(bgu_srgb).float().cuda().permute(2,0,1).unsqueeze()
