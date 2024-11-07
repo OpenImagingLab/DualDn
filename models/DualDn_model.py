@@ -316,7 +316,7 @@ class DualDn_Model(BaseModel):
         
         save_img = val_opt.get('save_img', True)
         rgb2bgr = val_opt.get('rgb2bgr', True)
-        use_img = val_opt.get('use_img', True) # whether to use reference images to compute metrics
+        use_img = val_opt.get('use_img', False) # whether to use reference images to compute metrics
         
         visuals = self.get_current_visuals()
         lq_sRGB = tensor2img([visuals['lq_sRGB']], rgb2bgr=rgb2bgr)
