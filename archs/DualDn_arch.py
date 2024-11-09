@@ -82,6 +82,7 @@ class Raw_Dn(nn.Module):
         in_srgb = run_pipeline(out_raw, {'color_mask':colormask, 'wb_matrix':wb_matrix, 'color_desc':'RGBG', 'rgb_xyz_matrix':rgb_xyz_matrix, 'ref':ref, 'gamma_type':gamma_type, 'demosaic_type':demosaic_type, 'alpha':alpha}, 'normal', final_stage)
 
         if ref_sRGB != None and not (ref_sRGB == 0).all(): # Only for inference, to keep consistent with ref_sRGB's color
+            in_srgb = torch.clamp(in_srgb, min=1e-6, max=1) # For BGU estimation, there may be overflow, set bound.
             bgu_gamma = bguFit(in_srgb, ref_sRGB)
             bgu_srgb = bguSlice(bgu_gamma, in_srgb)
             in_srgb = torch.from_numpy(bgu_srgb).float().cuda().permute(2,0,1).unsqueeze()
@@ -123,6 +124,7 @@ class sRGB_Dn(nn.Module):
         in_srgb = run_pipeline(out_raw, {'color_mask':colormask, 'wb_matrix':wb_matrix, 'color_desc':'RGBG', 'rgb_xyz_matrix':rgb_xyz_matrix, 'ref':ref, 'gamma_type':gamma_type, 'demosaic_type':demosaic_type, 'alpha':alpha}, 'normal', final_stage)
 
         if ref_sRGB != None and not (ref_sRGB == 0).all(): # Only for inference, to keep consistent with ref_sRGB's color
+            in_srgb = torch.clamp(in_srgb, min=1e-6, max=1) # For BGU estimation, there may be overflow, set bound.
             bgu_gamma = bguFit(in_srgb, ref_sRGB)
             bgu_srgb = bguSlice(bgu_gamma, in_srgb)
             in_srgb = torch.from_numpy(bgu_srgb).float().cuda().permute(2,0,1).unsqueeze()
@@ -197,11 +199,12 @@ class DualDn(nn.Module):
             skip_srgb = run_pipeline(out_raw, {'color_mask':colormask, 'wb_matrix':wb_matrix, 'color_desc':'RGBG', 'rgb_xyz_matrix':rgb_xyz_matrix, 'ref':ref, 'gamma_type':gamma_type, 'demosaic_type':demosaic_type, 'alpha':alpha}, 'normal', final_stage)
 
             if ref_sRGB != None and not (ref_sRGB == 0).all(): # Only for inference, to keep consistent with ref_sRGB's color
+                skip_srgb = torch.clamp(skip_srgb, min=1e-6, max=1) # For BGU estimation, there may be overflow, set bound.
                 bgu_gamma = bguFit(skip_srgb, ref_sRGB)
                 bgu_srgb = bguSlice(bgu_gamma, skip_srgb)
                 rgb_noise_map = bguSlice(bgu_gamma, rgb_noise_map)
                 skip_srgb = torch.from_numpy(bgu_srgb).float().cuda().permute(2,0,1).unsqueeze(0)
-                rgb_noise_map = torch.clamp(torch.from_numpy(rgb_noise_map).float().cuda().permute(2,0,1).unsqueeze(0), min=1e-3) # After BGU, there may be overflow, set bound.
+                rgb_noise_map = torch.clamp(torch.from_numpy(rgb_noise_map).float().cuda().permute(2,0,1).unsqueeze(0), min=1e-6) # After BGU, there may be overflow, set bound.
 
             in_srgb = self.nm_fuse2([skip_srgb, rgb_noise_map])
         
@@ -209,6 +212,7 @@ class DualDn(nn.Module):
             skip_srgb = run_pipeline(out_raw, {'color_mask':colormask, 'wb_matrix':wb_matrix, 'color_desc':'RGBG', 'rgb_xyz_matrix':rgb_xyz_matrix, 'ref':ref, 'gamma_type':gamma_type, 'demosaic_type':demosaic_type, 'alpha':alpha}, 'normal', final_stage)
             
             if ref_sRGB != None and not (ref_sRGB == 0).all(): # Only for inference, to keep consistent with ref_sRGB's color
+                skip_srgb = torch.clamp(skip_srgb, min=1e-6, max=1) # For BGU estimation, there may be overflow, set bound.
                 bgu_gamma = bguFit(skip_srgb, ref_sRGB)
                 bgu_srgb = bguSlice(bgu_gamma, skip_srgb)
                 skip_srgb = torch.from_numpy(bgu_srgb).float().cuda().permute(2,0,1).unsqueeze()
