@@ -1,11 +1,3 @@
-# -----------------------------------------------------------------------------------
-# [ECCV2024] DualDn: Dual-domain Denoising via Differentiable ISP 
-# [Homepage] https://openimaginglab.github.io/DualDn/
-# [Author] Originally Written by Ruikang Li, from MMLab, CUHK.
-# [Usage] A robust differentiable ISP convert raw images to sRGB images, can be used in end-to-end training.
-# [License] Absolutely open-source and free to use, please cite our paper if possible. :)
-# -----------------------------------------------------------------------------------
-
 import cv2
 import numpy as np
 from scipy.sparse import spdiags, vstack, hstack, block_diag, csc_matrix
@@ -345,9 +337,9 @@ def Fit(input_image, edge_image, output_image):
         b = np.concatenate([b_data, b_deriv_y, b_deriv_x])
 
     # Solve the system
-    gamma = lsqr(A, b, iter_lim=1000)[0]
+    gamma = lsqr(A, b, iter_lim=500)[0]
     gamma = gamma.reshape(grid_size, order='F')
-    
+
     return gamma
 
 
@@ -401,7 +393,7 @@ def bguSlice(gamma, input_fs):
 
 
 # Mapping input_fs to output_fs
-def bguFit(input_fs, output_fs):
+def bguFit(input_fs, output_fs, bgu_ratio = 8):
 
     if isinstance(input_fs, np.ndarray):
         input_fs = im2double(input_fs)
@@ -415,8 +407,8 @@ def bguFit(input_fs, output_fs):
 
     fh, fw = input_fs.shape[:2]
 
-    input_ds = cv2.resize(input_fs, (fw//8, fh//8), interpolation=cv2.INTER_LANCZOS4) # INTER_LINEAR, INTER_CUBIC, INTER_AREA 
-    output_ds = cv2.resize(output_fs, (fw//8, fh//8), interpolation=cv2.INTER_LANCZOS4)
+    input_ds = cv2.resize(input_fs, (fw//bgu_ratio, fh//bgu_ratio), interpolation=cv2.INTER_LANCZOS4) # INTER_LINEAR, INTER_CUBIC, INTER_AREA 
+    output_ds = cv2.resize(output_fs, (fw//bgu_ratio, fh//bgu_ratio), interpolation=cv2.INTER_LANCZOS4)
     
     edge_ds = rgb2luminance(input_ds)
     
