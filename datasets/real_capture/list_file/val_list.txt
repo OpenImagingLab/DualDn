@@ -6,8 +6,6 @@ HUAWEI_0005.dng
 HUAWEI_0006.dng
 HUAWEI_0007.dng
 HUAWEI_0008.dng
-HUAWEI_0009.dng
-HUAWEI_0010.dng
 iPhone_0001.dng
 iPhone_0002.dng
 iPhone_0003.dng
@@ -16,8 +14,6 @@ iPhone_0005.dng
 iPhone_0006.dng
 iPhone_0007.dng
 iPhone_0008.dng
-iPhone_0009.dng
-iPhone_0010.dng
 Xiaomi_0001.dng
 Xiaomi_0002.dng
 Xiaomi_0003.dng
@@ -26,5 +22,3 @@ Xiaomi_0005.dng
 Xiaomi_0006.dng
 Xiaomi_0007.dng
 Xiaomi_0008.dng
-Xiaomi_0009.dng
-Xiaomi_0010.dng
