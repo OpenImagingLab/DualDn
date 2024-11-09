@@ -198,9 +198,9 @@ class DualDn_Dataset(data.Dataset):
                         BrightnessValue = exifdata.get('BrightnessValue', None)
                         BaselineExposure = exifdata.get('BaselineExposure', None)
                         SignalToNoiseRatio = exifdata.get('SignalToNoiseRatio', None)
-                        ratio = (AETarget / AEAverage) * np.sqrt(LightValue - BrightnessValue) * (BaselineExposure)
-                        lq_Raw = np.clip(lq_Raw * ratio, 0, 1) 
-                        noise_profile[0] = (np.mean(lq_Raw) / 10 ** (SignalToNoiseRatio/10)) * np.sqrt(ratio)
+                        ratio = (AETarget / AEAverage) * np.sqrt((LightValue - BrightnessValue) * (BaselineExposure))
+                        lq_Raw = np.clip(lq_Raw * max(ratio, 1), 0, 1) 
+                        noise_profile[0] = (np.mean(lq_Raw) / 10 ** (SignalToNoiseRatio/10)) * ratio
                         noise_profile[1] = noise_profile[1] * ratio
                     
                     # # save EXIF data as json file for checking
