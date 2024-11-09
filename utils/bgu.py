@@ -345,7 +345,7 @@ def Fit(input_image, edge_image, output_image):
         b = np.concatenate([b_data, b_deriv_y, b_deriv_x])
 
     # Solve the system
-    gamma = lsqr(A, b, iter_lim=500)[0]
+    gamma = lsqr(A, b, iter_lim=1000)[0]
     gamma = gamma.reshape(grid_size, order='F')
     
     return gamma
@@ -415,8 +415,8 @@ def bguFit(input_fs, output_fs):
 
     fh, fw = input_fs.shape[:2]
 
-    input_ds = cv2.resize(input_fs, (fw//4, fh//4), interpolation=cv2.INTER_CUBIC) # INTER_LINEAR, INTER_CUBIC, INTER_AREA, INTER_LANCZOS4
-    output_ds = cv2.resize(output_fs, (fw//4, fh//4), interpolation=cv2.INTER_CUBIC)
+    input_ds = cv2.resize(input_fs, (fw//8, fh//8), interpolation=cv2.INTER_LANCZOS4) # INTER_LINEAR, INTER_CUBIC, INTER_AREA 
+    output_ds = cv2.resize(output_fs, (fw//8, fh//8), interpolation=cv2.INTER_LANCZOS4)
     
     edge_ds = rgb2luminance(input_ds)
     
