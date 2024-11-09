@@ -91,6 +91,7 @@ network:
   with_noise_map: true
   c: 64
   backbone_type: 'Restormer'  # [MIRNet_v2], [Restormer], [SwinIR]
+  bgu_ratio : 4 # [1], [4], [8].  when inference, using bgu for ISP simulation. The lower 'bgu_ratio' is, the accuracy is higher, but with a slower speed. 
   bias: false
   LayerNorm_type: 'BiasFree'
 
