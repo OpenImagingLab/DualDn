@@ -17,6 +17,7 @@
 #### TODO Lists
 - Installation, Instruction, Results 
 - Demo on Huggingface for processing real-captured images.
+- Evaluate on SIDD benchmark.
 
 <hr />
 
