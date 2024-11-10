@@ -1,6 +1,6 @@
 ## Prerequisites
 
-1. Refer to the [INSTALL.md](../../INSTALL.md) for instructions on preparing environment and dependencies. 
+1. Refer to the [INSTALL.md](../INSTALL.md) for instructions on preparing environment and dependencies. 
 
 2. Download [training](https://mycuhk-my.sharepoint.com/:u:/g/personal/1155231343_link_cuhk_edu_hk/EUWR-KgxXD5OsH85ylom4H4BPv2hjYSMAyp4MkopiVnqoQ?e=mfcZBX) and [testing](https://mycuhk-my.sharepoint.com/:u:/g/personal/1155231343_link_cuhk_edu_hk/EfpMrXegPqVJiCaflRh5UH0B0hYIJh9WjSbzTtGXz67nwQ?e=qKkICu) datasets from One Drive.
   
