@@ -75,7 +75,7 @@ And we believe that if more clean raws or a more accurate noise model are given,
     <td align="center">DND Benchmark</td>
     <td align="center"><a href="https://mycuhk-my.sharepoint.com/:u:/g/personal/1155231343_link_cuhk_edu_hk/EWtIYRD2P0RLgdxcr_Ohq_EB9GBK6Sgmjgcog74DrVxs-w">Download</a></td>
     <td align="center"><a href="docs/DND.md#prerequisites">Prerequisites</a> \ <a href="docs/DND.md#train">Train</a> \ <a href="docs/DND.md#test">Test</a> \ <a href="docs/DND.md#inference">Inference</a></td>
-    <td align="center"><a href="https://mycuhk-my.sharepoint.com/:u:/g/personal/1155231343_link_cuhk_edu_hk/ERxgJwmmfRtKmTSnIjgSumYBnWLa4KCgrrOWmpT0GtXCcA?e=Lf1iE8">Download</a></td>
+    <td align="center"><a href="https://mycuhk-my.sharepoint.com/:u:/g/personal/1155231343_link_cuhk_edu_hk/EbS2nOKb_fhFtGb_kiz1nM8BFLYv1DqsZ3ZZhguQo9sBgQ?e=MlTfqO">Download</a></td>
   </tr>
 </table>
 
