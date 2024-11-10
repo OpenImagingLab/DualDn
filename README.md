@@ -75,6 +75,7 @@ And we believe that if more clean raws or a more accurate noise model are given,
 
 **HINTS:** We only provide models and results trained using [Restormer](https://github.com/swz30/Restormer) backbone, as it demonstrated the best performance in DualDn. 
 However, you can also train DualDn with other backbones, such as [SwinIR](https://github.com/JingyunLiang/SwinIR) or [MIRNet-v2](https://github.com/swz30/MIRNetv2), by following our instructions. 
+Reference evaluation metrics are also available in our paper.
 
 ## Results
 
