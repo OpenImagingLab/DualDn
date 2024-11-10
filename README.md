@@ -12,7 +12,7 @@
 #### News
 - **Sept 29, 2024:** Paper accepted at ECCV 2024. 😊
 - **Nov 4, 2024:** Training and inferencing code released. 🌹
-- **Nov 10, 2024:** Results and pre-trained models released. 📝
+- **Nov 10, 2024:** Pre-trained models and visual results released. Feel free to download! 📝
 
 #### TODO Lists
 - Installation, Instruction, Results 
