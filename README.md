@@ -7,7 +7,7 @@
 ![visitors](https://visitor-badge.laobi.icu/badge?page_id=OpenImagingLab.DualDn)
 
 ### [Project Page](https://openimaginglab.github.io/DualDn/) <br>
-Ruikang Li, Yujin Wang, [Shiqi Chen](https://tangeego.github.io/), Fan Zhang, [Jinwei Gu](https://www.gujinwei.org/), [Tianfan Xue](https://tianfan.info/) <br>
+[Ruikang Li](https://github.com/Lyricccco), Yujin Wang, [Shiqi Chen](https://tangeego.github.io/), Fan Zhang, [Jinwei Gu](https://www.gujinwei.org/), [Tianfan Xue](https://tianfan.info/) <br>
 
 #### News
 - **Sept 29, 2024:** Paper accepted at ECCV 2024 😊:
@@ -24,7 +24,66 @@ Unlike previous single-domain denoising, DualDn consists of two denoising networ
 
 <img src = "docs/static/images/intro.svg"  width="60%">
 
+## Installation
+
+
+## Demo
+
 
 ## Training and Evaluation
+We trained DualDn **ONLY** using: (1) clean raw images, (2) a reasonable noise model.
 
-Last updated (09/11/2024 19:56)
+We chose the MIT-Adobe FiveK Dataset for training, as it's a robust dataset containing multiple raw images in DNG format with EXIF metadata. 
+Although some images contain noise, MIT-Adobe FiveK is sufficient for training DualDn to generalize effectively to in-the-wild scenes. 
+
+And we believe that if more clean raws or a more accurate noise model are given, **DualDn’s performance could improve even further**.
+
+<table>
+  <tr>
+    <th align="center">Training on</th>
+    <th align="center">Evaluating on</th>
+    <th align="center">Test Sets</th>
+    <th align="center">Pretrained Model</th>
+    <th align="center">Instructions</th>
+    <th align="center">Visual Results</th>
+  </tr>
+  <tr>
+    <td rowspan="4" align="center">MIT-Adobe FiveK<br><a href="https://mycuhk-my.sharepoint.com/:u:/g/personal/1155231343_link_cuhk_edu_hk/EUWR-KgxXD5OsH85ylom4H4BPv2hjYSMAyp4MkopiVnqoQ?e=mfcZBX">Download</a></td>
+  </tr>
+  <tr>
+    <td align="center">Synthetic Images</td>
+    <td align="center"><a href="https://mycuhk-my.sharepoint.com/:u:/g/personal/1155231343_link_cuhk_edu_hk/ESu0mEIYmDRFlsm6p6I7BQcBjQKT89iPzph52d0RfbK9Gw?e=bvmyhN">Download</a></td>
+    <td align="center"><a href="https://mycuhk-my.sharepoint.com/:u:/g/personal/1155231343_link_cuhk_edu_hk/Eb2uUHfx8pRBimlrVRbR0dUB5arCuP6Vx5g3LKxImOUv3w?e=XLXLKC">Download</a></td>
+    <td align="center"><a href="docs/Synthetic.md#train">Train</a> \ <a href="docs/Synthetic.md#test">Test</a> \ <a href="docs/Synthetic.md#inference">Inference</a></td>
+    <td align="center"><a href="https://mycuhk-my.sharepoint.com/:u:/g/personal/1155231343_link_cuhk_edu_hk/EU8NqzQGahlKrJhh0xgl6rkBg50wN46nLrQW2-buPIN0VQ?e=TFLba5">Download</a></td>
+  </tr>
+  <tr>
+    <td align="center">Real_captured Images</td>
+    <td align="center"><a href="https://mycuhk-my.sharepoint.com/:u:/g/personal/1155231343_link_cuhk_edu_hk/EfpMrXegPqVJiCaflRh5UH0B0hYIJh9WjSbzTtGXz67nwQ?e=qKkICu">Download</a></td>
+    <td align="center"><a href="https://mycuhk-my.sharepoint.com/:u:/g/personal/1155231343_link_cuhk_edu_hk/EeSssinwPSRLvC2zOTdmAd8BLLtF3MaKfFw2kYv25WthkQ?e=bbO0Ql">Download</a></td>
+    <td align="center"><a href="docs/Real_captured.md#train">Train</a> \ <a href="docs/Real_captured.md#test">Test</a> \ <a href="docs/Real_captured.md#inference">Inference</a></td>
+    <td align="center"><a href="https://mycuhk-my.sharepoint.com/:u:/g/personal/1155231343_link_cuhk_edu_hk/Ed8o7_yvrB9LtF65CXkWI1sBQhbagoqgDHb99YrdZpo4Kw?e=Lc5Sco">Download</a></td>
+  </tr>
+  <tr>
+    <td align="center">DND Benchmark</td>
+    <td align="center"><a href="https://mycuhk-my.sharepoint.com/:u:/g/personal/1155231343_link_cuhk_edu_hk/EWtIYRD2P0RLgdxcr_Ohq_EB9GBK6Sgmjgcog74DrVxs-w">Download</a></td>
+    <td align="center"><a href="https://mycuhk-my.sharepoint.com/:u:/g/personal/1155231343_link_cuhk_edu_hk/EeSssinwPSRLvC2zOTdmAd8BLLtF3MaKfFw2kYv25WthkQ?e=bbO0Ql">Download</a></td>
+    <td align="center"><a href="docs/DND.md#train">Train</a> \ <a href="docs/DND.md#test">Test</a> \ <a href="docs/DND.md#inference">Inference</a></td>
+    <td align="center"><a href="https://mycuhk-my.sharepoint.com/:u:/g/personal/1155231343_link_cuhk_edu_hk/ERxgJwmmfRtKmTSnIjgSumYBnWLa4KCgrrOWmpT0GtXCcA?e=Lf1iE8">Download</a></td>
+  </tr>
+</table>
+
+**HINTS:** We only provide models and results trained using [Restormer](https://github.com/swz30/Restormer) backbone, as it demonstrated the best performance in DualDn. 
+However, you can also train DualDn with other backbones, such as [SwinIR](https://github.com/JingyunLiang/SwinIR) or [MIRNet-v2](https://github.com/swz30/MIRNetv2), by following our instructions. 
+
+## Results
+
+
+## Citation
+
+    @article{li2024dualdn,
+        title={DualDn: Dual-domain Denoising via Differentiable ISP}, 
+        author={Li, Ruikang and Wang, Yujin and Chen, Shiqi and Zhang, Fan and Gu, Jinwei and Xue, Tianfan},
+        journal={arXiv preprint arXiv:2409.18783},
+        year={2024}
+    }
