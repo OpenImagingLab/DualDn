@@ -10,8 +10,13 @@
 [Ruikang Li](https://github.com/Lyricccco), Yujin Wang, [Shiqi Chen](https://tangeego.github.io/), Fan Zhang, [Jinwei Gu](https://www.gujinwei.org/), [Tianfan Xue](https://tianfan.info/) <br>
 
 #### News
-- **Sept 29, 2024:** Paper accepted at ECCV 2024 😊:
-- **Nov 4, 2024:** Training and inferencing code released 🌹:
+- **Sept 29, 2024:** Paper accepted at ECCV 2024. 😊
+- **Nov 4, 2024:** Training and inferencing code released. 🌹
+- **Nov 10, 2024:** Results and pre-trained models released. 📝
+
+#### TODO Lists
+- Installation, Instruction, Results 
+- Demo on Huggingface for processing real-captured images.
 
 <hr />
 
