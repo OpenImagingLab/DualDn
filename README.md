@@ -36,7 +36,7 @@ See [INSTALL.md](INSTALL.md) for the installation of environment and dependencie
 ## Demo
 
 
-## Training and Evaluation
+## Train and Evaluation
 We trained DualDn on a single GPU **ONLY** using: (1) clean raw images, (2) a reasonable noise model. 
 
 We chose the MIT-Adobe FiveK Dataset for training, as it's a robust dataset containing multiple raw images in DNG format with EXIF metadata. 
