@@ -26,10 +26,6 @@ class DualDn_Model(BaseModel):
         super(DualDn_Model, self).__init__(opt)
 
         self.net_g = build_network(self.opt['network'])
-        ##* Calcualte Params
-        # num_params = sum(p.numel() for p in self.net_g.parameters() if p.requires_grad)
-        # print(f'Total parameters: {num_params}')
-        
         self.net_g = self.model_to_device(self.net_g)
         self.print_network(self.net_g)
 
@@ -192,18 +188,6 @@ class DualDn_Model(BaseModel):
                             out_Rawpatch, out_sRGBpatch = self.net_g(self.lq_Raw[:,:,i*patch_size:(i+1)*patch_size+crop_border,j*patch_size:(j+1)*patch_size+crop_border], \
                             self.color_mask[:,:,i*patch_size:(i+1)*patch_size+crop_border,j*patch_size:(j+1)*patch_size+crop_border], self.wb_matrix, self.rgb_xyz_matrix, self.ref, self.gamma_type, self.demosaic_type, self.k, self.sigma, self.alpha, self.final_stage)
                         else:
-                            
-                            ##* Calcualte FLOPs, Runtime    
-                            # import torchprofile
-                            # import timeit
-                            # input_tensor = torch.randn(1, 1, 256, 256).cuda()
-                            # flops = torchprofile.profile_macs(self.net_g, (input_tensor, self.color_mask[:,:,i*patch_size:(i+1)*patch_size,j*patch_size:(j+1)*patch_size], self.wb_matrix, self.rgb_xyz_matrix, self.ref, self.gamma_type, self.demosaic_type, None, None, self.alpha, self.final_stage))
-                            # print(f"FLOPs: {flops}")
-                            # def run_model():
-                            #     self.net_g(input_tensor, self.color_mask[:,:,i*patch_size:(i+1)*patch_size,j*patch_size:(j+1)*patch_size], self.wb_matrix, self.rgb_xyz_matrix, self.ref, self.gamma_type, self.demosaic_type, None, None, self.alpha, self.final_stage)
-                            # runtime = timeit.timeit(run_model, number=100) / 100
-                            # print(f"Runtime: {runtime} seconds")
-                            
                             out_Rawpatch, out_sRGBpatch = self.net_g(self.lq_Raw[:,:,i*patch_size:(i+1)*patch_size+crop_border,j*patch_size:(j+1)*patch_size+crop_border], \
                             self.color_mask[:,:,i*patch_size:(i+1)*patch_size+crop_border,j*patch_size:(j+1)*patch_size+crop_border], self.wb_matrix, self.rgb_xyz_matrix, self.ref, self.gamma_type, self.demosaic_type, alpha = self.alpha, final_stage = self.final_stage)
                         
@@ -294,18 +278,6 @@ class DualDn_Model(BaseModel):
                                 self.color_mask[:,:,i*patch_size:(i+1)*patch_size+crop_border,j*patch_size:(j+1)*patch_size+crop_border], self.wb_matrix, self.rgb_xyz_matrix, self.ref, self.gamma_type, self.demosaic_type, self.k, self.sigma, self.alpha, self.final_stage, \
                                 self.ref_sRGB[:,:,i*patch_size:(i+1)*patch_size+crop_border,j*patch_size:(j+1)*patch_size+crop_border])
                         else:
-                            
-                            ##* Calcualte FLOPs, Runtime    
-                            # import torchprofile
-                            # import timeit
-                            # input_tensor = torch.randn(1, 1, 256, 256).cuda()
-                            # flops = torchprofile.profile_macs(self.net_g, (input_tensor, self.color_mask[:,:,i*patch_size:(i+1)*patch_size,j*patch_size:(j+1)*patch_size], self.wb_matrix, self.rgb_xyz_matrix, self.ref, self.gamma_type, self.demosaic_type, None, None, self.alpha, self.final_stage))
-                            # print(f"FLOPs: {flops}")
-                            # def run_model():
-                            #     self.net_g(input_tensor, self.color_mask[:,:,i*patch_size:(i+1)*patch_size,j*patch_size:(j+1)*patch_size], self.wb_matrix, self.rgb_xyz_matrix, self.ref, self.gamma_type, self.demosaic_type, None, None, self.alpha, self.final_stage)
-                            # runtime = timeit.timeit(run_model, number=100) / 100
-                            # print(f"Runtime: {runtime} seconds")
-                            
                             out_Rawpatch, out_sRGBpatch = self.net_g(self.lq_Raw[:,:,i*patch_size:(i+1)*patch_size+crop_border,j*patch_size:(j+1)*patch_size+crop_border], \
                                 self.color_mask[:,:,i*patch_size:(i+1)*patch_size+crop_border,j*patch_size:(j+1)*patch_size+crop_border], self.wb_matrix, self.rgb_xyz_matrix, self.ref, self.gamma_type, self.demosaic_type, alpha = self.alpha, final_stage = self.final_stage, \
                                 ref_sRGB = self.ref_sRGB[:,:,i*patch_size:(i+1)*patch_size+crop_border,j*patch_size:(j+1)*patch_size+crop_border])
