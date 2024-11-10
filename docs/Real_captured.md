@@ -108,6 +108,6 @@
      If your results seems worse than the ref_sRGB (smartphone results) or encounter issues like abnormal colors or overly dark images, please **open an issue** on our GitHub with the original raw and JPEG files. <br><br>
      **Your data is valuable to us, and we’re always here to help!** 😊
      
-   - You may encounter **some little black holes** in certain areas. That's because we use BGU during inference for color alignment, which downsamples the original images by a default 8x ratio, potentially neglecting local areas. <br><br>
+   - You may encounter **some little black holes** in certain areas. That's because we use [BGU](https://people.csail.mit.edu/hasinoff/pubs/ChenEtAl16-bgu.pdf) during inference for color alignment, which downsamples the original images by a default 8x ratio, potentially neglecting local areas. <br><br>
      **To fix this**, open `'./options/DualDn_Big.yml'` and set `bgu_ratio` in `network'` to `4` or even `1`. But instead, this will slow down the inference speed to a certain extent.
-     You can also speed up DualDn inference by disabling BGU. Open `'./options/DualDn_Big.yml'` and set `BGU` in `datasets/val/Real_captured` to `false`. 
+     You can also speed up DualDn inference by disabling [BGU](https://people.csail.mit.edu/hasinoff/pubs/ChenEtAl16-bgu.pdf). Open `'./options/DualDn_Big.yml'` and set `BGU` in `datasets/val/Real_captured` to `false`. 
