@@ -31,7 +31,7 @@ Unlike previous single-domain denoising, DualDn consists of two denoising networ
 <img src = "docs/static/images/intro.svg"  width="60%">
 
 ## Installation
-
+See [INSTALL.md](INSTALL.md) for the installation of environment and dependencies required to run DualDn.
 
 ## Demo
 
@@ -49,7 +49,7 @@ And we believe that if more clean raws or a more accurate noise model are given,
     <th align="center">Training on</th>
     <th align="center">Evaluating on</th>
     <th align="center">Test Sets</th>
-    <th align="center">Pretrained Model</th>
+    <th align="center">Pre-trained Model</th>
     <th align="center">Instructions(TODO)</th>
     <th align="center">Visual Results</th>
   </tr>
