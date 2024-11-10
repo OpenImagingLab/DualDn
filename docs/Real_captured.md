@@ -105,7 +105,7 @@
 🌟TIPS🌟:
 
    - Limited with funding, we cannot test DualDn on latest smartphones, which may have different EXIF data in their raw files. <br><br>
-     If your results seems worse than the ref_sRGB (smartphone results) or encounter issues like artifacts, abnormal colors, or overly dark images, please **open an issue** on our GitHub with the original raw and JPEG files. <br><br>
+     If your results seems worse than the ref_sRGB (smartphone results) or encounter issues like abnormal colors or overly dark images, please **open an issue** on our GitHub with the original raw and JPEG files. <br><br>
      **Your data is valuable to us, and we’re always here to help!** 😊
      
    - You may encounter **some little black holes** in certain areas. That's because we use BGU during inference for color alignment, which downsamples the original images by a default 8x ratio, potentially neglecting local areas. <br><br>
