@@ -77,7 +77,7 @@ def ordered_yaml():
     Loader.add_constructor(_mapping_tag, dict_constructor)
     return Loader, Dumper
 
-def yaml_load(opt_file, test_mode, iters):
+def yaml_load(opt_file, val_datasets, test_mode, iters):
     """Load yaml file or string.
 
     Args:
@@ -94,6 +94,10 @@ def yaml_load(opt_file, test_mode, iters):
     loaded_opt['is_train'] = not test_mode
     loaded_opt['opt_path'] = opt_file
     loaded_opt['iters'] = iters
+
+    loaded_opt['datasets']['val']['val_datasets']['Synthetic']['mode'] = True if val_datasets == 'Synthetic' else False
+    loaded_opt['datasets']['val']['val_datasets']['Real_captured']['mode'] = True if val_datasets == 'Real_captured' else False
+    loaded_opt['datasets']['val']['val_datasets']['DND']['mode'] = True if val_datasets == 'DND' else False
 
     return loaded_opt
 
@@ -135,8 +139,9 @@ def opt_update(opt):
 def parse_options():
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('-opt', type=str, default=r'./experiments/5000_0.0002-0.02_DualDn_Restormer/denoising.yml', help='Path to option YAML file.')
+    parser.add_argument('-opt', type=str, default=r'./experiments/DualDn_Big/denoising.yml', help='Path to option YAML file.')
     parser.add_argument('--num_iters', type=int, default=300000, help='num iterations')
+    parser.add_argument('--val_datasets', choices=['Synthetic', 'Real_captured', 'DND'], help='val_datasets for testing')
     parser.add_argument('--launcher', choices=['none', 'pytorch', 'slurm'], default='none', help='job launcher')
     parser.add_argument('--test', default=True, help='Test/Train mode')
     parser.add_argument('--local_rank', type=int, default=0) 
@@ -144,7 +149,7 @@ def parse_options():
     args = parser.parse_args()
 
     ##* load and update yaml option file
-    opt = yaml_load(args.opt, args.test, args.num_iters)
+    opt = yaml_load(args.opt, args.val_datasets, args.test, args.num_iters)
     opt = opt_update(opt)
 
     ##* distributed-training settings
