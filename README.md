@@ -15,7 +15,7 @@
 - **Nov 10, 2024:** Pre-trained models and visual results released. Feel free to download! 📝
 
 #### TODO Lists
-- Installation, Instruction, Results 
+- Instruction, Results 
 - Demo on Huggingface for processing real-captured images.
 - Evaluate on SIDD benchmark.
 
