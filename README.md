@@ -37,7 +37,7 @@ Unlike previous single-domain denoising, DualDn consists of two denoising networ
 
 
 ## Training and Evaluation
-We trained DualDn **ONLY** using: (1) clean raw images, (2) a reasonable noise model.
+We trained DualDn on a single GPU **ONLY** using: (1) clean raw images, (2) a reasonable noise model. 
 
 We chose the MIT-Adobe FiveK Dataset for training, as it's a robust dataset containing multiple raw images in DNG format with EXIF metadata. 
 Although some images contain noise, MIT-Adobe FiveK is sufficient for training DualDn to generalize effectively to in-the-wild scenes. 
