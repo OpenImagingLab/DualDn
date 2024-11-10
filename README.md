@@ -17,6 +17,7 @@
 #### TODO Lists
 - Instruction, Results 
 - Demo on Huggingface for processing real-captured images.
+- We have captured a new test set with real_captured RAW images, and we will release a new benchmark for dual-denoising!
 - Evaluate on SIDD benchmark.
 
 <hr />
