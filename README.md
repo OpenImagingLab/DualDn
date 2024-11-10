@@ -7,7 +7,7 @@
 ![visitors](https://visitor-badge.laobi.icu/badge?page_id=OpenImagingLab.DualDn)
 
 ### [Project Page](https://openimaginglab.github.io/DualDn/) <br>
-[Ruikang Li](https://github.com/Lyricccco), Yujin Wang, [Shiqi Chen](https://tangeego.github.io/), Fan Zhang, [Jinwei Gu](https://www.gujinwei.org/), [Tianfan Xue](https://tianfan.info/) <br>
+[Ruikang Li](https://github.com/Lyricccco), Yujin Wang, [Shiqi Chen](https://tangeego.github.io/), Fan Zhang, [Jinwei Gu](https://www.gujinwei.org/) and [Tianfan Xue](https://tianfan.info/) <br>
 
 #### News
 - **Sept 29, 2024:** Paper accepted at ECCV 2024. 😊
