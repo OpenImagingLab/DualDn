@@ -4,7 +4,7 @@
 [![ECCV](https://img.shields.io/badge/ECCV-2024-B762C1)](https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/07547.pdf)
 [![paper](https://img.shields.io/badge/arXiv-Paper-<COLOR>.svg)](https://arxiv.org/abs/2409.18783)
 [![supplement](https://img.shields.io/badge/Supplementary-Material-red)](https://mycuhk-my.sharepoint.com/:b:/g/personal/1155231343_link_cuhk_edu_hk/ES8QQePLkZxCia6JwDJGZOEBJnPZmdKVSO1J_3RGtpNUQw)
-![visitors](https://visitor-badge.laobi.icu/badge?page_id=OpenImagingLab.DualDn)
+<!-- ![visitors](https://visitor-badge.laobi.icu/badge?page_id=OpenImagingLab.DualDn) -->
 
 ### 👉 [Project Page](https://openimaginglab.github.io/DualDn/) <br>
 [Ruikang Li](https://github.com/Lyricccco), Yujin Wang, [Shiqi Chen](https://tangeego.github.io/), Fan Zhang, [Jinwei Gu](https://www.gujinwei.org/) and [Tianfan Xue](https://tianfan.info/) <br>
