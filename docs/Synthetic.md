@@ -54,6 +54,8 @@
    - By default, validation uses noise levels `[0.002, 0.02]` and ISP amplification ratio `[0, 0.5]`, creating a total of 4 validation sets (2 noise levels * 2 ratios). 
      You can modify these settings in the `datasets/tval` section of the `****.yml` file for custom validation configurations.
 
+4. Find the training results in `'./experiments'`
+
 
 ## Test
 
@@ -75,7 +77,7 @@
 3. You can modify the test settings in the `datasets/val` section of the experiment options file at `'./experiments/DualDn/DualDn.yml'`, including but not limited to parameters such as the random noise level (`K_min`, `K_max`), fixed noise type (`noise_model`),
    random ISP amplification ratio (`alpha__min`, `alpha__max`) and different ISP algorithms (`final_stage`, `demosaic_type`, `gamma_type`).
 
-4. Find the test results in `'./results'`
+4. Find the testing results in `'./results'`
 
 
 ## Inference
@@ -100,4 +102,4 @@
     python inference_dualdn.py -opt ./options/DualDn.yml --pretrained_model ./pretrained_model/DualDn_Restormer.pth --noise_level [0.002, 0.02] --alpha [0, 0.5]
     ```
 
-5. Find the inference results in `'./results'`
+5. Find the inferencing results in `'./results'`
