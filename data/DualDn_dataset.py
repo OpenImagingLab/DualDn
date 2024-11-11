@@ -245,9 +245,7 @@ class DualDn_Dataset(data.Dataset):
                     metadata['color_mask'][1:h:2, 0:w:2] = metadata['cfa_pattern'][1,0]
                     metadata['color_mask'][1:h:2, 1:w:2] = metadata['cfa_pattern'][1,1]
                     gt_Raw = np.zeros(lq_Raw.shape).astype(np.float32)
-                    sRGBPath = osp.join(osp.dirname(osp.dirname(self.paths[index]['RawPath'])),'ref_sRGB','{}.mat'.format(osp.basename(RawPath)[0:4]))
-                    sRGBFile = h5py.File(sRGBPath,'r')
-                    ref_sRGB = np.array(sRGBFile['InoisySRGB'][:]).swapaxes(1,2).transpose(1,2,0)
+                    ref_sRGB = np.zeros((lq_Raw.shape[0], lq_Raw.shape[1], 3)).astype(np.float32)
 
                 ##* consistency for validating
                 if self.dataset_type == 'Real_captured' or self.dataset_type == 'Synthetic':
