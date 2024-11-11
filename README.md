@@ -15,7 +15,6 @@
 - **Nov 10, 2024:** Pre-trained models and visual results released. Feel free to download! 📝
 
 #### TODO Lists
-- Results 
 - Demo on Huggingface for processing real-captured images.
 - We have captured a new test set with real_captured RAW images, and we will release a new benchmark for dual-denoising!
 - Evaluate on SIDD benchmark.
