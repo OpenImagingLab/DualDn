@@ -144,7 +144,7 @@ def opt_update(opt):
 def parse_options():
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('-opt', type=str, default=r'./options/denoising.yml', help='Path to option YAML file.')
+    parser.add_argument('-opt', type=str, default=r'./options/DualDn_Big.yml', help='Path to option YAML file.')
     parser.add_argument('--pretrained_model', type=str, default=r'./pretrained_model/DualDn_Big.pth', help='Path to pretrained model.')
     parser.add_argument('--launcher', choices=['none', 'pytorch', 'slurm'], default='none', help='job launcher')
     parser.add_argument('--test', default=True, help='Test/Train mode')
