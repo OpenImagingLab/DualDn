@@ -85,6 +85,13 @@
 
 3. Put your orginal raw files in `'./datasets/real_capture/Raw'`, corresponding JPEG files in `'./datasets/real_capture/ref_sRGB'`. Each RAW and JPEG pair must have the same prefix name.
 
+    - MUST using smartphone camera's Pro Mode.  👉 [**How to use Pro Mode?**](https://consumer-tkb.huawei.com/weknow/applet/simulator/en-gb00739859/procamera.html)
+    - MUST saved both in **RAW** and **standard JPG** format with the **SAME** prefix name.
+    
+      Specifically, you save 2 files. **RAW** for denoising input, **standard JPG** for unknown ISP color alignment.
+      
+      E.g.  **RAW:** `'Xiaomi_0001.dng'` and **standard JPG:** `'Xiaomi_0001.jpg'`.
+
 4. Add the correct filenames to `'./datasets/real_capture/list_file/val_list.txt'`, with one filename per line.
 
 5. Run
