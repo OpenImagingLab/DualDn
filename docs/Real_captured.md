@@ -53,7 +53,7 @@
     - If you'd like to validate directly on real-captured images, open the `DualDn_Big.yml` file, set `mode` in `datasets/val/Real_captured` to `true` and set `mode` in `datasets/val/Synthetic` to `false`.
     - We recommend evaluating on real-captured images after training using the following test or inference code.
 
-4. Find the validation results in `'./experiments'`
+4. Find the training results in `'./experiments'`
 
 
 ## Test
@@ -74,7 +74,7 @@
     python test_dualdn.py -opt ./experiments/DualDn_Big/DualDn_Big.yml --num_iters 300000 --val_datasets Real_captured
     ```
 
-3. Find the test results in `'./results'`
+3. Find the testing results in `'./results'`
 
 
 ## Inference
@@ -93,7 +93,7 @@
     python inference_dualdn.py -opt ./options/DualDn_Big.yml --pretrained_model ./pretrained_model/DualDn_Big.pth --val_datasets Real_captured
     ```
 
-6. Find the inference results in `'./results'`
+6. Find the inferencing results in `'./results'`
 
 
   - Toy example for inference:
