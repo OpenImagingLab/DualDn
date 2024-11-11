@@ -48,7 +48,7 @@
     python train_dualdn.py -opt ./options/DualDn_Big.yml
     ```
 
-3. For fast validation, we validate 20 synthetic images every 50,000 iterations, since real-captured images are typically 4K or 8K resolution.
+3. For fast validation, we validate 20 synthetic images instead of the real-captured images every 50,000 iterations, since real-captured images are typically 4K or 8K resolution.
 
     - If you'd like to validate directly on real-captured images, open the `DualDn_Big.yml` file, set `mode` in `datasets/val/Real_captured'` to `true` and set `mode` in `datasets/val/Synthetic` to `'false'`.
     - We recommend evaluating on real-captured images after training using the following test or inference code.
