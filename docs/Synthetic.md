@@ -44,15 +44,17 @@
       ```
       python train_dualdn.py -opt ./options/sRGB_Denoising.yml
       ```
-   - You can adjust the default training settings in the `datasets/train` section of the `****.yml` file, including but not limited to parameters such as the random noise level (`K_min`, `K_max`), fixed noise type (`noise_model`),
+   - You can adjust the default training settings in the `datasets/train` section of the `./options/****.yml` file, including but not limited to parameters such as the random noise level (`K_min`, `K_max`), fixed noise type (`noise_model`),
      random ISP amplification ratio (`alpha__min`, `alpha__max`) and different ISP algorithms (`final_stage`, `demosaic_type`, `gamma_type`).
+     
+   - You can adjust the default denoising paradigms in the `network` section of the `./options/****.yml` file. This includes parameters such as the denoising domain (`type`), denoising backbone (`backbone_type`), channel number (`c`) and noise map usage (`with_noise_map`).
 
 
 3. For validation, we evaluate 20 synthetic images and calculating 4 evaluation metrics, that is **PSNR**, **SSIM**, **NIQE** and **LPIPS**.
    - The random seed is fixed, ensuring that the generated synthetic noisy raw remains consistent in each validation round.
-   - For faster validation, open the `****.yml` file and set `central_crop` in `datasets/val` to `true`. This setting only validates the central square crop of each image, with a size of `(patch_size, patch_size)`. Afterward, you can choose to test the full image with the following test code.
+   - For faster validation, open the `./options/****.yml` file and set `central_crop` in `datasets/val` to `true`. This setting only validates the central square crop of each image, with a size of `(patch_size, patch_size)`. Afterward, you can choose to test the full image with the following test code.
    - By default, validation uses noise levels `[0.002, 0.02]` and ISP amplification ratio `[0, 0.5]`, creating a total of 4 validation sets (2 noise levels * 2 ratios). 
-     You can modify these settings in the `datasets/tval` section of the `****.yml` file for custom validation configurations.
+     You can modify these settings in the `datasets/val` section of the `./options/****.yml` file for custom validation configurations.
 
 4. Find the training results in `'./experiments'`
 
