@@ -242,6 +242,5 @@ button {
 }
 
 .move-right {
-  margin-left: auto;
-  margin-right: 450px;
+  transform: translateX(200px);
 }
