@@ -13,6 +13,7 @@
 - **Sept 29, 2024:** Paper accepted at ECCV 2024. 😊
 - **Nov 4, 2024:** Training and inferencing code released. 🌹
 - **Nov 10, 2024:** Pre-trained models and visual results released. Feel free to download! 📝
+- **Nov 15, 2024:** Project page has evolved to the next generation—check it out! 💢
 
 #### TODO Lists
 - Demo on Huggingface for processing real-captured images.
