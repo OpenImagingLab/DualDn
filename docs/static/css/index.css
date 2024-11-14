@@ -240,3 +240,8 @@ button {
   border-radius: 8px;      
   display: inline-block;   
 }
+
+.move-right {
+  margin-left: auto;
+  margin-right: 450px;
+}

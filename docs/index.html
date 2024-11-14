@@ -4,15 +4,13 @@
   <meta charset="utf-8">
   <title>DualDn: Dual-domain Denoising via Differentiable ISP</title>
   <link rel="icon" type="image/x-icon" href="static/images/noise.svg">
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-  rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
 
   <link rel="stylesheet" href="static/css/bulma.min.css">
   <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
   <link rel="stylesheet" href="static/css/bulma-slider.min.css">
   <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
-  <link rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="static/css/index.css">
   <link href="static/css/twentytwenty-no-compass.css" rel="stylesheet" type="text/css" />
 
@@ -23,6 +21,8 @@
   <script src="static/js/bulma-slider.min.js"></script>
   <script src="static/js/index.js"></script>
   <script src="static/js/video_comparison.js"></script>
+  <script src='static/js/jquery-1.8.3.min.js'></script>
+  <script type="text/javascript" src="https://cdn.rawgit.com/igorlino/elevatezoom-plus/1.1.6/src/jquery.ez-plus.js"></script>
 </head>
 
 <body>
@@ -31,10 +31,10 @@
   <div class="oval-background">
       <span style="font-family: Comic Sans MS, 'Noto Sans'; font-size: 20px;">
         <img src="static/images/idea.svg" style="vertical-align: bottom; height: 3.25ex;" />
-        <b><div class="tooltip">FIRST<span class="tooltiptext"><span style="font-family:'Noto Sans', sans-serif; font-size: 15px">First none-learning-based denoising was proposed in 2013.</span></div></b>
-        <div class="tooltip">Learning-based<span class="tooltiptext"><span style="font-family:'Noto Sans', sans-serif; font-size: 15px"><b>End-to-end optimizing.</b></span></div>
-        <div class="tooltip">Dual-domain<span class="tooltiptext"><span style="font-family:'Noto Sans', sans-serif; font-size: 15px"><b>Raw denoiser adapts to noise variations and sRGB denoiser adapts to ISP variations.</b></span></div>
-        <div class="tooltip">Denoising Paradigm.<span class="tooltiptext"><span style="font-family:'Noto Sans', sans-serif; font-size: 15px"><b>Trained with synthetic images, DualDn can successfully generalize to real-captured images with high-quality denoising.</b></span></div>
+        <b><div class="tooltip">FIRST<span class="tooltiptext"><span style="font-family:'Noto Sans', sans-serif; font-size: 15px"></span></div></b>
+        <div class="tooltip">Learning-based<span class="tooltiptext"><span style="font-family:'Noto Sans', sans-serif; font-size: 15px">End-to-end optimizing through differentiable ISP.</span></div>
+        <div class="tooltip">Dual-domain<span class="tooltiptext"><span style="font-family:'Noto Sans', sans-serif; font-size: 15px">Raw denoiser -> noise variations | sRGB denoiser -> ISP variations.</span></div>
+        <div class="tooltip">Denoising Paradigm.<span class="tooltiptext"><span style="font-family:'Noto Sans', sans-serif; font-size: 15px">Trained with synthetic noise, generalize to real-captured images.</span></div>
       </span>
   </div>
 </div>
@@ -48,7 +48,7 @@
               <div class="is-size-5 publication-authors">
                 <!-- Paper authors -->
                 <span class="author-block">
-                  Ruikang Li<sup>1,2</sup>,</span>
+                  <a href="https://github.com/Lyricccco">Ruikang Li</a><sup>1,2</sup>,</span>
                 <span class="author-block">
                   Yujin Wang<sup>1,†</sup>,</span>
                 <span class="author-block">
@@ -118,7 +118,7 @@
                         <span class="icon">
                           <i class="far fa-images"></i>
                         </span>
-                        <div class="tooltip">Data<span class="tooltiptext"><span style="font-family:'Noto Sans', sans-serif; font-size: 15px"><b>coming soon.</b></span></div>
+                        <div class="tooltip">New Benchmark<span class="tooltiptext" style="top: 100%"><span style="font-size: 14px">We'll release a new benchmark for dual-denoising.</span></div>
                       </a>
                     </span> 
 
@@ -129,32 +129,147 @@
       </div>
     </div>
 </section>
+
+<center>
+  <h2 class="title is-4 bordered">Trained with Synthetic Noise. <br> ONE Model. NO Cherry-Picking. NO Fine-Tuning.</h2>
+</center>
+
+
+
+  <center>
+    <h2 class="subtitle" style="margin-top: 50px; margin-bottom: 20px; ">
+      <img src="static/images/first.svg" style="vertical-align: middle; height: 4ex;" /> SOTA Denoising Model with Exceptional Generalization Ability
+    </h2>
+  </center>
   
-  <!-- Teaser video-->
-  <section class="hero teaser">
-    <div class="container is-max-desktop" style="margin-top: -60px;">
-      <!-- <h2 class="title is-3"style="text-align: center;margin-top: 30px; margin-bottom: -25px;">Directly generlize to unseen smartphone cameras</h2> -->
-      <div class="columns is-centered">
-        <div class="column is-24">
-          <div>
-            <video class="video" id="Teaser"  width="50%"  loop playsinline autoPlay muted src="./static/videos/teaser.mp4" onplay="resizeAndPlay(this)"></video>
-            <canvas width="150" height="150" class="videoMerge" id="TeaserMerge"></canvas>
-            </div>
-        <h2 class="subtitle has-text-centered">
-          <b>Camera ISPs</b> <img src="static/images/vs.svg" style="vertical-align: middle; height: 4ex;" /> <b>Our DualDn</b> <br>
-          <small>[Notice that <b>DualDn</b> is only trained on synthetic images, without using any images from these cameras or ISPs during training.]</small>
-          
+  <section class="hero teaser" style="transform: translateX(60px);">
+    <center>
+
+      <p style="text-align: left; margin-left: 330px;">
+      Test on <b>UNSEEN</b> smartphone cameras: 
+      <button href="#" onClick="Change_real_captured_results('duck')" class="tooltip">Duck<span class="tooltip_phone"><span style="font-size: 12px">Xiaomi 12</span></button> |
+      <button href="#" onClick="Change_real_captured_results('plaza')" class="tooltip">Plaza<span class="tooltip_phone"><span style="font-size: 12px">Xiaomi 12</span></button> |
+      <button href="#" onClick="Change_real_captured_results('tower')" class="tooltip">Tower<span class="tooltip_phone"><span style="font-size: 12px">Xiaomi 12</span></button> |
+      <button href="#" onClick="Change_real_captured_results('sky')" class="tooltip">Sky<span class="tooltip_phone"><span style="font-size: 12px">iPhone 13 Pro</span></button> |
+      <button href="#" onClick="Change_real_captured_results('overtime')" class="tooltip">Overtime<span class="tooltip_phone"><span style="font-size: 12px">iPhone 13 Pro</span></button> |
+      <button href="#" onClick="Change_real_captured_results('litup')" class="tooltip">Litup<span class="tooltip_phone"><span style="font-size: 12px">iPhone 13 Pro</span></button> |
+      <button href="#" onClick="Change_real_captured_results('tenement')" class="tooltip">Tenement<span class="tooltip_phone"><span style="font-size: 12px">HUAWEI mate 30</span></button> |
+      <button href="#" onClick="Change_real_captured_results('pagoda')" class="tooltip">Pagoda<span class="tooltip_phone"><span style="font-size: 12px">HUAWEI mate 30</span></button> |
+      <button href="#" onClick="Change_real_captured_results('clock')" class="tooltip">Clock<span class="tooltip_phone"><span style="font-size: 12px">HUAWEI mate 30</span></button>
+      </p>
+
+      <h3 id="sceneTitle">Duck</h3>
+      <style>#sceneTitle {display: none;}</style>
+      <table>
+        <tr>
+          <th>
+            <img id="viewer"  onload="setBorder(this); " style="border-style: solid; border-color: #F44336; border-width: 3px;" src="static/images/real/1_dualdn.png" width=1000px>
+            <br/>
+          </th>
+          <th width="150">
+            <p class='thumbnail_title'>Noisy Input</p>
+            <img class='thumbnail' id='img1' onload="setBorder(this);" src='static/images/real/1_noisy.png' onClick="replaceImage(this,viewer);" width="130"/>
+
+            <p class='thumbnail_title'><a href="https://github.com/haoyuc/MaskedDenoising">Mask Denoising</a></p>
+            <img class='thumbnail' id='img2' onload="setBorder(this);" src='static/images/real/1_maskdn.png' onClick="replaceImage(this,viewer);" width="130"/>
+
+            <p class='thumbnail_title'><a href="https://github.com/swz30/Restormer">Restormer</a></p>
+            <img class='thumbnail' id='img3' onload="setBorder(this);" src='static/images/real/1_restormer.png' onClick="replaceImage(this,viewer);" width="130"/>
+
+            <p class='thumbnail_title'><a href="https://www.gadgetmatch.com/how-to-pro-mode-camera-smartphone-tutorial/">Original Smartphone ISP</a></p>
+            <img class='thumbnail' id='img4' onload="setBorder(this);" src='static/images/real/1_camera.png' onClick="replaceImage(this,viewer);" width="130"/>
+
+            <p class='thumbnail_title'><a href="https://github.com/OpenImagingLab/DualDn">DualDn (ours)</a></p>
+            <img class='thumbnail' id='img5' onload="setBorder(this);" src='static/images/real/1_dualdn.png' onClick="replaceImage(this,viewer);" width="130"/>
+
+          </th>
+        </tr>
+      </table>
+        <h2 class="subtitle" style="margin-bottom: 10px;">
+          <p style="text-align: right; margin-right: 480px;">
+            Pressing <img src="static/images/1.svg" style="vertical-align: middle; height: 2.5ex;" />
+            <img src="static/images/2.svg" style="vertical-align: middle; height: 2.5ex;" />
+            <img src="static/images/3.svg" style="vertical-align: middle; height: 2.5ex;" />
+            <img src="static/images/4.svg" style="vertical-align: middle; height: 2.5ex;" />
+            <img src="static/images/5.svg" style="vertical-align: middle; height: 2.5ex;" />
+            on keyboard to cycle through different results.
+          </p>
+        </h2>   
+        <h2 style="text-align: right; margin-right: 480px; margin-top: 20px;">
+          * DualDn <b>NOT</b> trained with any images from these cameras or ISPs.
         </h2>
-      </div>
-    </div>
-    </div>
+      <br><br>
+    </center>
   </section>
-  <!-- End teaser video -->
   
-  <!-- <hr> -->
-  
+  <center>
+    <h2 class="subtitle" style="margin-top: 10px; margin-bottom: 20px;">
+      <img src="static/images/first.svg" style="vertical-align: middle; height: 4ex;" /> SOTA Denoising Model with Superior Detail Preservation
+    </h2>
+  </center>
+
+
+  <section class="hero teaser" style="transform: translateX(60px);">
+    <center>
+
+      <p style="text-align: left; margin-left: 330px;">
+      Test on <b>PUBLIC</b> DND benchmark:
+      <button href="#" onClick="Change_dnd_results('0001-18')" class="tooltip">0001-18</button> |
+      <button href="#" onClick="Change_dnd_results('0014-12')" class="tooltip">0014-12</button> |
+      <button href="#" onClick="Change_dnd_results('0023-17')" class="tooltip">0023-17</button> |
+      <button href="#" onClick="Change_dnd_results('0026-02')" class="tooltip">0026-02</button> |
+      <button href="#" onClick="Change_dnd_results('0026-04')" class="tooltip">0026-04</button> |
+      <button href="#" onClick="Change_dnd_results('0035-02')" class="tooltip">0035-02</button> |
+      <button href="#" onClick="Change_dnd_results('0039-13')" class="tooltip">0039-13</button> |
+      <button href="#" onClick="Change_dnd_results('0049-14')" class="tooltip">0049-14</button> 
+      </p>
+      <h3 id="sceneTitle2">0001-18</h3>
+      <style>#sceneTitle2 {display: none;}</style>
+      <table class="move-right">
+        <tr>
+          <th>
+            <img id="viewer2"  onload="setBorder2(this); " style="border-style: solid; border-color: #F44336; border-width: 3px;" src="static/images/dnd/1_dualdn.png" width=565px>
+            <br/>
+          </th>
+          <th width="120">
+            <p class='thumbnail_title'>Noisy Input</p>
+            <img class='thumbnail' id='img6' onload="setBorder2(this);" src='static/images/dnd/1_noisy.png' onClick="replaceImage(this,viewer2);" width="78"/>
+
+            <p class='thumbnail_title'><a href="https://github.com/haoyuc/MaskedDenoising">Mask Denoising</a></p>
+            <img class='thumbnail' id='img7' onload="setBorder2(this);" src='static/images/dnd/1_maskdn.png' onClick="replaceImage(this,viewer2);" width="78"/>
+
+            <p class='thumbnail_title'><a href="https://github.com/swz30/CycleISP">CycleISP</a></p>
+            <img class='thumbnail' id='img8' onload="setBorder2(this);" src='static/images/dnd/1_cycleisp.png' onClick="replaceImage(this,viewer2);" width="78"/>
+
+            <p class='thumbnail_title'><a href="https://github.com/swz30/Restormer">Restormer</a></p>
+            <img class='thumbnail' id='img9' onload="setBorder2(this);" src='static/images/dnd/1_restormer.png' onClick="replaceImage(this,viewer2);" width="78"/>
+
+            <p class='thumbnail_title'><a href="https://github.com/OpenImagingLab/DualDn">DualDn (ours)</a></p>
+            <img class='thumbnail' id='img10' onload="setBorder2(this);" src='static/images/dnd/1_dualdn.png' onClick="replaceImage(this,viewer2);" width="78"/>
+
+          </th>
+        </tr>
+      </table>
+        <h2 class="subtitle" style="margin-bottom: 10px;">
+          <p style="text-align: right; margin-right: 480px;">
+            Pressing <img src="static/images/Q.svg" style="vertical-align: middle; height: 2.5ex;" />
+            <img src="static/images/W.svg" style="vertical-align: middle; height: 2.5ex;" />
+            <img src="static/images/E.svg" style="vertical-align: middle; height: 2.5ex;" />
+            <img src="static/images/R.svg" style="vertical-align: middle; height: 2.5ex;" />
+            <img src="static/images/T.svg" style="vertical-align: middle; height: 2.5ex;" />
+            on keyboard to cycle through different results.
+          </p>
+        </h2>
+        <h2 style="text-align: right; margin-right: 480px; margin-top: 20px;">
+          * <a href="https://noise.visinf.tu-darmstadt.de/benchmark/#overview">DND benchmark</a> <b>NOT</b> provide ground truth or training images.
+        </h2>
+      <br><br>
+    </center>
+  </section>
+
+
 <!-- Youtube video -->
-<section class="hero is-small" style="margin-top: 50px;">
+<section class="hero is-small" style="margin-top: 0px;">
   <div class="hero-body">
     <div class="container">
       <h2 class="title is-3" style="margin-top: 10px;"><img src="static/images/check.svg" style="vertical-align: top; height: 1ex;"/> Overview</h2>
@@ -224,9 +339,9 @@
     <div class="column is-8">
       <div class="content" style="text-align: center;">
         <p>
-          This website was modified from <a href="https://nerfies.github.io" target="_blank">Nerfies</a>. Thanks for sharing this fantastic template. <br> 
-          Also, this website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
-          Commons Attribution-ShareAlike 4.0 International License</a>.
+          This website is originally desighed for <a href="https://github.com/OpenImagingLab/DualDn">DualDn</a>, and is inspired from <a href="https://nerfies.github.io" target="_blank">Nerfies</a>, <a href="https://jankautz.com/supplemental/FlexISP/" target="_blank">FlexISP</a> and <a href="https://github.com/igorlino/elevatezoom-plus" target="_blank">Elevatezoom+</a> <br> 
+          Also, this website is licensed under a <a rel="license"  href="https://creativecommons.org/licenses/by-nc/4.0/deed.en" target="_blank">Attribution-NonCommercial 4.0 International</a>. <br> 
+          <b>ALLTIME NonCommercial.</b>
         </p>
       </div>
     </div>
@@ -235,15 +350,31 @@
 </footer>
   <!-- End image carousel -->
 
-  <script src="static/js/jquery.min.js"></script>
-  <script src="static/js/jquery.event.move.js"></script>
-  <script src="static/js/jquery.twentytwenty.js"></script>
   <script>
-    $(window).load(function(){
-      $(".twentytwenty-container[data='raw-ours']").twentytwenty({default_offset_pct: 0.38, before_label: "Raw-domian Denoising", after_label: "Dual-domian Denoising (Ours)", move_slider_on_hover: false, click_to_move: true});
-      $(".twentytwenty-container[data='sRGB-ours']").twentytwenty({default_offset_pct: 0.38, before_label: "sRGB-domian Denoising", after_label: "Dual-domian Denoising (Ours)", move_slider_on_hover: false, click_to_move: true});
-      $(".twentytwenty-container[data='ISP-ours']").twentytwenty({default_offset_pct: 0.38, before_label: "Camera ISPs", after_label: "DualDn (Ours)", move_slider_on_hover: false, click_to_move: true});
-    });
+    $(document).ready(function() { 
+      $('#viewer').ezPlus({
+        cursor: 'inherit',
+        lensOpacity: 0.25,
+        zoomWindowPosition: 11,    
+        zoomWindowHeight: 565,
+        zoomWindowWidth: 400,
+        currentZoomLevel:2,
+        borderSize: 3,
+        easing: true,
+        easingAmount: 8});
+      $('#viewer2').ezPlus({
+        cursor: 'inherit',
+        lensOpacity: 0.25,
+        zoomWindowPosition: 11,    
+        zoomWindowHeight: 565,
+        zoomWindowWidth: 565,
+        borderSize: 3,
+        easing: true,
+        easingAmount: 8});
+      setTimeout(function() { replaceImage(img5,viewer); }, 500); // make sure everything is loaded and set image
+      setTimeout(function() { replaceImage(img10,viewer2); }, 500); // make sure everything is loaded and set image
+    })
+    document.onkeydown = keyHandler;
     </script>
 
 </body>
