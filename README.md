@@ -94,6 +94,15 @@ Reference evaluation metrics are also available in our paper.
         year={2024}
     }
 
+## License
+
+This repository is licensed under [Attribution-NonCommercial 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/deed.en).
+1. **Attribution** — Proper credit must be given, including a link to the license and an indication of any modifications made. This should be done in a reasonable manner, without implying endorsement by the licensor
+
+2. **NonCommercial** — The Algorithm may **NOT** be used for commercial purposes. This includes, but is not limited to, the sale, licensing, or integration of the Software into commercial products or services.
+
+For collaboration or inquiries, please contact us.
+
 ## Acknowledgment
 
 This code is based on the [BasicSR](https://github.com/xinntao/BasicSR) toolbox. 
