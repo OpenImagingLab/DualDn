@@ -29,7 +29,7 @@ Unlike previous single-domain denoising, DualDn consists of two denoising networ
 
 ## Network Architecture
 
-<img src = "docs/static/images/intro.svg"  width="60%">
+<img src = "docs/static/images/intro.svg"  width="80%">
 
 ## Installation
 See [INSTALL.md](INSTALL.md) for the installation of environment and dependencies required to run DualDn.
