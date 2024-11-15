@@ -47,9 +47,9 @@
     ```
     python train_dualdn.py -opt ./options/DualDn_Big.yml
     ```
-    - Unlike the training strategy used for [Synthetic](Synthetic.md#) evaluation, we utilize the entire MIT-Adobe Fivek dataset (nearly 5,000 images) to train our model for 300,000 iterations, enhancing the model's generalization ability when dealing with unseen real-captured images.
+    - Unlike the training strategy used for [Synthetic](Synthetic.md#) evaluation, we utilize the entire MIT-Adobe Fivek dataset (nearly RAW 5,000 images) to train our model for 300,000 iterations, enhancing the model's generalization ability when dealing with unseen real-captured images.
       
-    - It's worth noting that previous SOTA denoising models on the [DND benchmark](https://noise.visinf.tu-darmstadt.de/benchmark/#overview), such as [CycleISP](https://github.com/swz30/CycleISP) and [UPI](https://github.com/timothybrooks/unprocessing), were trained with 1,000,000 RAW images. In comparison, the training dataset we use here is relatively small.
+    - It's worth noting that previous SOTA denoising models on the [DND benchmark](https://noise.visinf.tu-darmstadt.de/benchmark/#overview), such as [CycleISP](https://github.com/swz30/CycleISP) and [UPI](https://github.com/timothybrooks/unprocessing), were trained with **1,000,000 RAW images**. In comparison, the volume of training RAW images we use here is **relatively small**.
 
 3. For fast validation, we validate 20 synthetic images instead of the real-captured images every 50,000 iterations, since real-captured images are typically 4K or 8K resolution.
 
