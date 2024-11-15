@@ -9,6 +9,7 @@
 ### 👉 [Project Page](https://openimaginglab.github.io/DualDn/) <br>
 [Ruikang Li](https://github.com/Lyricccco), Yujin Wang, [Shiqi Chen](https://tangeego.github.io/), Fan Zhang, [Jinwei Gu](https://www.gujinwei.org/) and [Tianfan Xue](https://tianfan.info/) <br>
 
+
 #### News
 - **Sept 29, 2024:** Paper accepted at ECCV 2024. 😊
 - **Nov 4, 2024:** Training and inferencing code released. 🌹
@@ -20,11 +21,17 @@
 - We have captured a new test set with real_captured RAW images, and we will release a new benchmark for dual-denoising!
 - Evaluate on SIDD benchmark.
 
+<div align="center">
+  <h2>
+    Trained with Synthetic Noise.<br> ONE Model. NO Cherry-Picking. NO Fine-Tuning.
+  </h2>
+</div>
 <hr />
 
 > **Abstract:** *There are two typical ways to inject a denoiser into the Image Signal Processing (ISP) pipeline: applying a denoiser directly to captured raw frames (raw domain) or to the ISP's output sRGB images (sRGB domain).
 However, both approaches have their limitations. Residual noise from raw-domain denoising can be amplified by the subsequent ISP processing, and the sRGB domain struggles to handle spatially varying noise since it only sees noise distorted by the ISP. Consequently, most raw or sRGB domain denoising works only for specific noise distributions and ISP configurations.
-Unlike previous single-domain denoising, DualDn consists of two denoising networks: one in the raw domain and one in the sRGB domain. The raw domain denoising adapts to sensor-specific noise as well as spatially varying noise levels, while the sRGB domain denoising adapts to ISP variations and removes residual noise amplified by the ISP. Both denoising networks are connected with a differentiable ISP, which is trained end-to-end and discarded during the inference stage.* 
+Unlike previous single-domain denoising, DualDn consists of two denoising networks: one in the raw domain and one in the sRGB domain. The raw domain denoising adapts to sensor-specific noise as well as spatially varying noise levels, while the sRGB domain denoising adapts to ISP variations and removes residual noise amplified by the ISP. Both denoising networks are connected with a differentiable ISP, which is trained end-to-end and discarded during the inference stage.*
+
 <hr />
 
 ## Network Architecture
