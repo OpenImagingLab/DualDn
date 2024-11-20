@@ -95,11 +95,13 @@ Reference evaluation metrics are also available in our paper.
 
 ## Citation
 
-    @article{li2024dualdn,
-        title={DualDn: Dual-domain Denoising via Differentiable ISP}, 
-        author={Li, Ruikang and Wang, Yujin and Chen, Shiqi and Zhang, Fan and Gu, Jinwei and Xue, Tianfan},
-        journal={arXiv preprint arXiv:2409.18783},
-        year={2024}
+    @inproceedings{li2025dualdn,
+      title={Dualdn: Dual-domain denoising via differentiable isp},
+      author={Li, Ruikang and Wang, Yujin and Chen, Shiqi and Zhang, Fan and Gu, Jinwei and Xue, Tianfan},
+      booktitle={European Conference on Computer Vision},
+      pages={160--177},
+      year={2025},
+      organization={Springer}
     }
 
 ## License
