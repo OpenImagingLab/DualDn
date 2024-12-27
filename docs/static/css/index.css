@@ -242,7 +242,7 @@ button {
 }
 
 .move-right {
-  transform: translateX(200px);
+  transform: translateX(105px);
 }
 
 .hidden {

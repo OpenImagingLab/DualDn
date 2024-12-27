@@ -115,6 +115,6 @@ This repository is licensed under [Attribution-NonCommercial 4.0 International](
 
 For collaboration or inquiries, please contact us.
 
-## Acknowledgment
+## Acknowledgement
 
 This code is based on the [BasicSR](https://github.com/xinntao/BasicSR) toolbox. 
