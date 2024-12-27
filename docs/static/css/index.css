@@ -244,3 +244,8 @@ button {
 .move-right {
   transform: translateX(200px);
 }
+
+.hidden {
+  display: none;
+}
+

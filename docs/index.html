@@ -353,6 +353,63 @@
 </footer>
   <!-- End image carousel -->
 
+  <div class="hidden" id="preload-container"></div>
+
+  <script>
+    const i = 9;
+    const j = 8;
+    const basePath1 = 'static/images/real/';
+    const basePath2 = 'static/images/dnd/';
+    const preloadContainer = document.getElementById('preload-container');
+
+    for (let index = 1; index <= i; index++) {
+      // Preload real-results
+      const noisyImg1 = document.createElement('img');
+      noisyImg1.src = `${basePath1}${index}_noisy.png`;
+      preloadContainer.appendChild(noisyImg1);
+
+      const maskdnImg1 = document.createElement('img');
+      maskdnImg1.src = `${basePath1}${index}_maskdn.png`;
+      preloadContainer.appendChild(maskdnImg1);
+
+      const restormerImg1 = document.createElement('img');
+      restormerImg1.src = `${basePath1}${index}_restormer.png`;
+      preloadContainer.appendChild(restormerImg1);
+
+      const cameraImg1 = document.createElement('img');
+      cameraImg1.src = `${basePath1}${index}_camera.png`;
+      preloadContainer.appendChild(cameraImg1);
+
+      const dualdnImg1 = document.createElement('img');
+      dualdnImg1.src = `${basePath1}${index}_dualdn.png`;
+      preloadContainer.appendChild(dualdnImg1);
+    }
+
+    for (let index = 1; index <= j; index++) {
+      // Preload dnd-results
+      const noisyImg2 = document.createElement('img');
+      noisyImg2.src = `${basePath2}${index}_noisy.png`;
+      preloadContainer.appendChild(noisyImg2);
+
+      const maskdnImg2 = document.createElement('img');
+      maskdnImg2.src = `${basePath2}${index}_maskdn.png`;
+      preloadContainer.appendChild(maskdnImg2);
+
+      const cycleispImg2 = document.createElement('img');
+      cycleispImg2.src = `${basePath2}${index}_cycleisp.png`;
+      preloadContainer.appendChild(cycleispImg2);
+
+      const restormerImg2 = document.createElement('img');
+      restormerImg2.src = `${basePath2}${index}_restormer.png`;
+      preloadContainer.appendChild(restormerImg2);
+
+      const dualdnImg2 = document.createElement('img');
+      dualdnImg2.src = `${basePath2}${index}_dualdn.png`;
+      preloadContainer.appendChild(dualdnImg2);
+    }
+  </script>
+
+
   <script>
     $(document).ready(function() { 
       $('#viewer').ezPlus({
