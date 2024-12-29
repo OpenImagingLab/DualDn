@@ -212,7 +212,6 @@
 
   <section class="hero teaser" style="transform: translateX(60px);">
     <center>
-
       <p style="transform: translateX(-150px);">
       Test on <b>PUBLIC</b> DND benchmark:
       <button href="#" onClick="Change_dnd_results('0001-18')" class="tooltip">0001-18</button> |
@@ -229,30 +228,30 @@
       <table class="move-right">
         <tr>
           <th>
-            <img id="viewer2"  onload="setBorder2(this); " style="border-style: solid; border-color: #F44336; border-width: 3px;" src="static/images/dnd/1_dualdn.png" width=565px>
+            <img id="viewer2"  onload="setBorder2(this); " style="border-style: solid; border-color: #F44336; border-width: 3px; transform: translateX(-50px);" src="static/images/dnd/1_dualdn.png" width=650px>
             <br/>
           </th>
-          <th width="120">
+          <th width="120" style="transform: translateX(-50px);">
             <p class='thumbnail_title'>Noisy Input</p>
-            <img class='thumbnail' id='img6' onload="setBorder2(this);" src='static/images/dnd/1_noisy.png' onClick="replaceImage(this,viewer2);" width="78"/>
+            <img class='thumbnail' id='img6' onload="setBorder2(this);" src='static/images/dnd/1_noisy.png' onClick="replaceImage(this,viewer2);" width="92"/>
 
             <p class='thumbnail_title'><a href="https://github.com/haoyuc/MaskedDenoising">Mask Denoising</a></p>
-            <img class='thumbnail' id='img7' onload="setBorder2(this);" src='static/images/dnd/1_maskdn.png' onClick="replaceImage(this,viewer2);" width="78"/>
+            <img class='thumbnail' id='img7' onload="setBorder2(this);" src='static/images/dnd/1_maskdn.png' onClick="replaceImage(this,viewer2);" width="92"/>
 
             <p class='thumbnail_title'><a href="https://github.com/swz30/CycleISP">CycleISP</a></p>
-            <img class='thumbnail' id='img8' onload="setBorder2(this);" src='static/images/dnd/1_cycleisp.png' onClick="replaceImage(this,viewer2);" width="78"/>
+            <img class='thumbnail' id='img8' onload="setBorder2(this);" src='static/images/dnd/1_cycleisp.png' onClick="replaceImage(this,viewer2);" width="92"/>
 
             <p class='thumbnail_title'><a href="https://github.com/swz30/Restormer">Restormer</a></p>
-            <img class='thumbnail' id='img9' onload="setBorder2(this);" src='static/images/dnd/1_restormer.png' onClick="replaceImage(this,viewer2);" width="78"/>
+            <img class='thumbnail' id='img9' onload="setBorder2(this);" src='static/images/dnd/1_restormer.png' onClick="replaceImage(this,viewer2);" width="92"/>
 
             <p class='thumbnail_title'><a href="https://github.com/OpenImagingLab/DualDn">DualDn (ours)</a></p>
-            <img class='thumbnail' id='img10' onload="setBorder2(this);" src='static/images/dnd/1_dualdn.png' onClick="replaceImage(this,viewer2);" width="78"/>
+            <img class='thumbnail' id='img10' onload="setBorder2(this);" src='static/images/dnd/1_dualdn.png' onClick="replaceImage(this,viewer2);" width="92"/>
 
           </th>
         </tr>
       </table>
         <h2 class="subtitle" style="margin-bottom: 10px;">
-          <p style="transform: translateX(10px);">
+          <p style="transform: translateX(5px);">
             Pressing <img src="static/images/Q.svg" style="vertical-align: middle; height: 2.5ex;" />
             <img src="static/images/W.svg" style="vertical-align: middle; height: 2.5ex;" />
             <img src="static/images/E.svg" style="vertical-align: middle; height: 2.5ex;" />
@@ -261,7 +260,7 @@
             on keyboard to cycle through different results.
           </p>
         </h2>
-        <h2 style="transform: translateX(82px); margin-top: 20px;">
+        <h2 style="transform: translateX(77px); margin-top: 20px;">
           * <a href="https://noise.visinf.tu-darmstadt.de/benchmark/#overview">DND benchmark</a> <b>DOES NOT</b> provide ground truth or training images.
         </h2>
       <br><br>
@@ -270,14 +269,18 @@
 
 
 <!-- Youtube video -->
-<section class="hero is-small" style="margin-top: 0px;">
+<section class="hero is-light is-small" style="margin-top: 0px;">
   <div class="hero-body">
     <div class="container">
-      <h2 class="title is-3" style="margin-top: 10px;"><img src="static/images/check.svg" style="vertical-align: top; height: 1ex;"/> Overview</h2>
+      <center><h2 class="title is-3" style="margin-top: 10px; margin-bottom: 30px;">Overview</h2></center>
+      <h2 class="subtitle" style="margin-top: 0px; margin-bottom: 10px;">
+        <p style="transform: translateX(140px);">
+          <img src="static/images/down.svg" style="vertical-align: middle; height: 3ex;" /> Due to <b>unpridictable</b> noise charteristics, ALL modern smartphone cameras still <b>struggle with</b> in-the-wild noise.
+        </p>
+      </h2>
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
           <video poster="" id="tree" autoplay controls muted loop height="100%">
-            <!-- Your video here -->
             <source src="./static/videos/Toy Example.mp4"
             type="video/mp4">
           </video>
@@ -291,38 +294,53 @@
   <section class="hero is-small">
     <div class="hero-body">
       <div class="container">
-          <h2 class="title is-3"><img src="static/images/check.svg" style="vertical-align: top; height: 1ex;"/> Methods</h2>
+        <center><h2 class="title is-3" style="margin-top: 25px; margin-bottom: 25px; transform: translateX(-45px);"> Previous methods <span style="display: inline-block; width: 10px;"></span> <img src="static/images/vs.svg" style="vertical-align: middle; height: 3.5ex;" /> <span style="display: inline-block; width: 10px;"></span>  Our DualDn</h2></center>
+          <center><img src="static/images/raw_title.svg" style="vertical-align: top; height: 10ex; transform: translateX(-485px);"/></center>
           <div class="columns is-centered has-text-centered">
-            <div class="column is-10">
-              <img src="static/images/intro.svg" />
-            </div>
+            <img src="static/images/raw.svg"style="vertical-align: top; height: 35ex; transform: translateX(-60px);" /> 
           </div>
-          <div class="columns is-centered">
-            <div class="column is-6">
-              <p>
-                There are two typical ways to inject a denoiser into the Image Signal Processing (ISP) pipeline:
-                applying a denoiser directly to captured raw frames (raw domain) or to the ISP's output sRGB images (sRGB domain).
-                <br>
-                However, both approaches have their limitations.
-                Residual noise from raw-domain denoising can be amplified by the subsequent ISP processing, and the sRGB domain struggles to handle spatially varying noise since it only sees noise distorted by the ISP. 
-                Consequently, most raw or sRGB domain denoising works only for specific noise distributions and ISP configurations. 
-                <br>
-                Unlike previous single-domain denoising, DualDn consists of two denoising networks: one in the raw domain and one in the sRGB domain.
-                The raw domain denoising adapts to sensor-specific noise as well as spatially varying noise levels, while the sRGB domain denoising adapts to ISP variations and removes residual noise amplified by the ISP.
-                Both denoising networks are connected with a differentiable ISP, which is trained end-to-end and discarded during the inference stage.
-              </p>
-            </div>
+          <div class="columns is-centered has-text-centered">
+            <img src="static/images/raw_intro.svg"style="vertical-align: top; height: 35ex; transform: translateX(-60px);" />
+          </div>
+          
+          <center><img src="static/images/srgb_title.svg" style="vertical-align: top; height: 10ex; transform: translateX(-485px);"/></center>
+          <div class="columns is-centered has-text-centered">
+            <img src="static/images/srgb.svg"style="vertical-align: top; height: 35ex; transform: translateX(-60px);" />
+          </div>
+          <br>
+          <div class="columns is-centered has-text-centered">
+            <img src="static/images/srgb_intro.svg"style="vertical-align: top; height: 35ex; transform: translateX(-60px);" />
+          </div>
+          <br>
+
+          <center><img src="static/images/dualdn_title.svg" style="vertical-align: top; height: 10ex; transform: translateX(-485px);"/></center>
+          <div class="columns is-centered has-text-centered">
+            <img src="static/images/dualdn.svg"style="vertical-align: top; height: 35ex; transform: translateX(-60px);" />
+          </div>
+          <br>
+          <div class="columns is-centered has-text-centered">
+            <img src="static/images/dualdn_intro.svg"style="vertical-align: top; height: 35ex; transform: translateX(-60px);" />
           </div>
       </div>
     </div>
   </section>
   <!-- End paper abstract -->
-  
-  
+
+
+<!--Poster -->
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title"><img src="static/images/check.svg" style="vertical-align: top; height: 1ex;"/> Poster</h2>
+    <iframe  src="static/pdfs/Poster.pdf" width="100%" height="730">
+        </iframe>
+  </div>
+</section>
+<!--End Poster -->
+
 <!--BibTex citation -->
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
-    <h2 class="title">BibTeX</h2>
+    <h2 class="title"><img src="static/images/check.svg" style="vertical-align: top; height: 1ex;"/> BibTeX</h2>
     <pre><code>@inproceedings{li2024dualdn,
       title={Dualdn: Dual-domain denoising via differentiable isp}, 
       author={Li, Ruikang and Wang, Yujin and Chen, Shiqi and Zhang, Fan and Gu, Jinwei and Xue, Tianfan},
@@ -417,7 +435,7 @@
         lensOpacity: 0.25,
         zoomWindowPosition: 11,    
         zoomWindowHeight: 565,
-        zoomWindowWidth: 400,
+        zoomWindowWidth: 450,
         currentZoomLevel:2,
         borderSize: 3,
         easing: true,
@@ -426,8 +444,8 @@
         cursor: 'inherit',
         lensOpacity: 0.25,
         zoomWindowPosition: 11,    
-        zoomWindowHeight: 565,
-        zoomWindowWidth: 550,
+        zoomWindowHeight: 650,
+        zoomWindowWidth: 600,
         borderSize: 3,
         easing: true,
         easingAmount: 8});
