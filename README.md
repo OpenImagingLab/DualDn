@@ -6,7 +6,7 @@
 [![supplement](https://img.shields.io/badge/Supplementary-Material-red)](https://mycuhk-my.sharepoint.com/:b:/g/personal/1155231343_link_cuhk_edu_hk/ES8QQePLkZxCia6JwDJGZOEBJnPZmdKVSO1J_3RGtpNUQw)
 <!-- ![visitors](https://visitor-badge.laobi.icu/badge?page_id=OpenImagingLab.DualDn) -->
 
-### 👉 [Project Page](https://openimaginglab.github.io/DualDn/) <br>
+### 👉 [Project Page (for more visual results)](https://openimaginglab.github.io/DualDn/) <br>
 [Ruikang Li](https://github.com/Lyricccco), Yujin Wang, [Shiqi Chen](https://tangeego.github.io/), Fan Zhang, [Jinwei Gu](https://www.gujinwei.org/) and [Tianfan Xue](https://tianfan.info/) <br>
 
 
@@ -17,9 +17,7 @@
 - **Nov 15, 2024:** Project page has evolved to the next generation—check it out! 💢
 
 #### TODO Lists
-- Demo on Huggingface for processing real-captured images.
-- We have captured a new test set with real_captured RAW images, and we will release a new benchmark for dual-denoising!
-- Evaluate on SIDD benchmark.
+- We have captured a new test set with real_captured RAW images, and we will release a new benchmark for dual-denoising.
 
 <div align="center">
   <h2>
@@ -34,9 +32,23 @@ Unlike previous single-domain denoising, DualDn consists of two denoising networ
 
 <hr />
 
+# Previous Methods
+### (1) Raw-domain denoising:
+<img src = "docs/static/images/raw.svg"  width="80%">
+<img src = "docs/static/images/raw_intro.svg"  width="80%">
+
+### (2) sRGB-domain denoising:
+<img src = "docs/static/images/srgb.svg"  width="80%">
+<img src = "docs/static/images/srgb_intro.svg"  width="80%">
+
+# Our Method
+
+<img src = "docs/static/images/dualdn.svg"  width="80%">
+<img src = "docs/static/images/dualdn_intro.svg"  width="80%">
+
 ## Network Architecture
 
-<img src = "docs/static/images/dualdn.svg"  width="100%">
+<img src = "docs/static/images/architecture.svg"  width="100%">
 
 ## Installation
 See [INSTALL.md](INSTALL.md) for the installation of environment and dependencies required to run DualDn.
@@ -92,6 +104,7 @@ Reference evaluation metrics are also available in our paper.
 
 ## Results
 
+<img src = "docs/static/images/result.svg"  width="100%">
 
 ## Citation
 
