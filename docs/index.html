@@ -380,7 +380,7 @@
     const basePath2 = 'static/images/dnd/';
     const preloadContainer = document.getElementById('preload-container');
 
-    for (let index = 2; index <= i; index++) {
+    for (let index = 1; index <= i; index++) {
       // Preload real-results
       const noisyImg1 = document.createElement('img');
       noisyImg1.src = `${basePath1}${index}_noisy.png`;
@@ -403,7 +403,7 @@
       preloadContainer.appendChild(dualdnImg1);
     }
 
-    for (let index = 2; index <= j; index++) {
+    for (let index = 1; index <= j; index++) {
       // Preload dnd-results
       const noisyImg2 = document.createElement('img');
       noisyImg2.src = `${basePath2}${index}_noisy.png`;
