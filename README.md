@@ -34,17 +34,17 @@
 
 ## Previous Methods
 ### (1) Raw-domain denoising:
-<img src = "docs/static/images/raw.svg"  width="80%">
-<img src = "docs/static/images/raw_intro.svg"  width="80%">
+<img src = "docs/static/images/raw.svg"  width="85%">
+<img src = "docs/static/images/raw_intro.svg"  width="85%">
 
 ### (2) sRGB-domain denoising:
-<img src = "docs/static/images/srgb.svg"  width="80%">
-<img src = "docs/static/images/srgb_intro.svg"  width="80%">
+<img src = "docs/static/images/srgb.svg"  width="85%">
+<img src = "docs/static/images/srgb_intro.svg"  width="85%">
 
 ## Our DualDn
 
-<img src = "docs/static/images/dualdn.svg"  width="80%">
-<img src = "docs/static/images/dualdn_intro.svg"  width="80%">
+<img src = "docs/static/images/dualdn.svg"  width="85%">
+<img src = "docs/static/images/dualdn_intro.svg"  width="85%">
 
 ## Network Architecture
 
