@@ -104,7 +104,7 @@ Reference evaluation metrics are also available in our paper.
 
 ## Results
 
-<img src = "docs/static/images/result.svg"  width="100%">
+<img src = "docs/static/images/result.svg"  width="95%">
 
 ## Citation
 
