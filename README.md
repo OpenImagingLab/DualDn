@@ -80,14 +80,14 @@ And we believe that if more clean raws or a more accurate noise model are given,
     <td align="center">Synthetic Images</td>
     <td align="center"><a href="https://mycuhk-my.sharepoint.com/:u:/g/personal/1155231343_link_cuhk_edu_hk/ESu0mEIYmDRFlsm6p6I7BQcBjQKT89iPzph52d0RfbK9Gw?e=bvmyhN">Download</a></td>
     <td align="center"><a href="docs/Synthetic.md#prerequisites">Prerequisites</a> \ <a href="docs/Synthetic.md#train">Train</a> \ <a href="docs/Synthetic.md#test">Test</a> \ <a href="docs/Synthetic.md#inference">Inference</a></td>
-    <td align="center"><a href="https://mycuhk-my.sharepoint.com/:u:/g/personal/1155231343_link_cuhk_edu_hk/Eb2uUHfx8pRBimlrVRbR0dUB5arCuP6Vx5g3LKxImOUv3w?e=XLXLKC">Download</a></td>
+    <td align="center"><a href="https://mycuhk-my.sharepoint.com/:u:/g/personal/1155231343_link_cuhk_edu_hk/Eb2uUHfx8pRBimlrVRbR0dUB5arCuP6Vx5g3LKxImOUv3w?e=XLXLKC">Download<sup>[1]</sup></a></td>
     <td align="center"><a href="https://mycuhk-my.sharepoint.com/:u:/g/personal/1155231343_link_cuhk_edu_hk/EU8NqzQGahlKrJhh0xgl6rkBg50wN46nLrQW2-buPIN0VQ?e=TFLba5">Download</a></td>
   </tr>
   <tr>
     <td align="center">Real_captured Images</td>
     <td align="center"><a href="https://mycuhk-my.sharepoint.com/:u:/g/personal/1155231343_link_cuhk_edu_hk/EfpMrXegPqVJiCaflRh5UH0B0hYIJh9WjSbzTtGXz67nwQ?e=qKkICu">Download</a></td>
     <td align="center"><a href="docs/Real_captured.md#prerequisites">Prerequisites</a> \ <a href="docs/Real_captured.md#train">Train</a> \ <a href="docs/Real_captured.md#test">Test</a> \ <a href="docs/Real_captured.md#inference">Inference</a></td>
-    <td rowspan="2" align="center"><a href="https://mycuhk-my.sharepoint.com/:u:/g/personal/1155231343_link_cuhk_edu_hk/EeSssinwPSRLvC2zOTdmAd8BLLtF3MaKfFw2kYv25WthkQ?e=bbO0Ql">Download</a></td>
+    <td rowspan="2" align="center"><a href="https://mycuhk-my.sharepoint.com/:u:/g/personal/1155231343_link_cuhk_edu_hk/EeSssinwPSRLvC2zOTdmAd8BLLtF3MaKfFw2kYv25WthkQ?e=bbO0Ql">Download<sup>[2]</sup></a></td>
     <td align="center"><a href="https://mycuhk-my.sharepoint.com/:u:/g/personal/1155231343_link_cuhk_edu_hk/Ed8o7_yvrB9LtF65CXkWI1sBQhbagoqgDHb99YrdZpo4Kw?e=Lc5Sco">Download</a></td>
   </tr>
   <tr>
@@ -101,6 +101,9 @@ And we believe that if more clean raws or a more accurate noise model are given,
 **HINTS:** We only provide models and results trained using [Restormer](https://github.com/swz30/Restormer) backbone, as it demonstrated the best performance in DualDn. 
 However, you can also train DualDn with other backbones, such as [SwinIR](https://github.com/JingyunLiang/SwinIR) or [MIRNet-v2](https://github.com/swz30/MIRNetv2), by following our instructions. 
 Reference evaluation metrics are also available in our paper.
+
+<sup>[1]</sup> For those who want to reproduce the fast-comparison experiment in Sec 4.1 in our paper, which is only trained with selected 200 raws. <br>
+<sup>[2]</sup> For those who want to denoise **ANY** in-the wild raw images by **ANY** cameras (i.e. all results showed on our [website](https://openimaginglab.github.io/DualDn/)), which is trained with the entire MIT-Adobe FiveK dataset (~5,000 raws).
 
 ## Results
 
