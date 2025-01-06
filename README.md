@@ -102,7 +102,7 @@ And we believe that if more clean raws or a more accurate noise model are given,
 However, you can also train DualDn with other backbones, such as [SwinIR](https://github.com/JingyunLiang/SwinIR) or [MIRNet-v2](https://github.com/swz30/MIRNetv2), by following our instructions. 
 Reference evaluation metrics are also available in our paper.
 
-<sup>[1]</sup> For those who want to reproduce the fast-comparison experiment in Sec 4.1 in our paper, which is only trained with selected 200 raws. <br>
+<sup>[1]</sup> For those who want to reproduce the experiment in Sec 4.1 (i.e. fast comparison between DualDn and single raw/sRGB denoising methods) in our paper, which is only trained with selected 200 raws. <br>
 <sup>[2]</sup> For those who want to denoise **ANY** in-the wild raw images by **ANY** cameras (i.e. all results showed on our [website](https://openimaginglab.github.io/DualDn/)), which is trained with the entire MIT-Adobe FiveK dataset (~5,000 raws).
 
 ## Results
