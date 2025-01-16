@@ -1,3 +1,10 @@
+# -----------------------------------------------------------------------------------
+# [ECCV2024] DualDn: Dual-domain Denoising via Differentiable ISP 
+# [Homepage] https://openimaginglab.github.io/DualDn/
+# [Author] Originally Written by Ruikang Li, from MMLab, CUHK.
+# [License] Absolutely open-source and free to use, please cite our paper if possible. :)
+# -----------------------------------------------------------------------------------
+
 import cv2
 import numpy as np
 from scipy.sparse import spdiags, vstack, hstack, block_diag, csc_matrix
