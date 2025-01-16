@@ -46,7 +46,7 @@
 <img src = "docs/static/images/dualdn.svg"  width="85%">
 <img src = "docs/static/images/dualdn_intro.svg"  width="85%">
 
-## Network Architecture
+## Framework Architecture
 
 <img src = "docs/static/images/architecture.svg"  width="100%">
 
