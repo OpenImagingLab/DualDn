@@ -16,7 +16,15 @@ Follow these instructions:
     conda activate pytorch_DualDn
     ```
 
-3. Install [ExifTool](https://exiftool.org/) for extracting Exif metadata from raw images.
+    
+3. Install dependencies
+
+    ```
+    pip install -r requirements.txt
+    ```
+
+    
+4. Install [ExifTool](https://exiftool.org/) for extracting Exif metadata from raw images
    
    Install ExifTool by following the [official installation guide](https://exiftool.org/install.html) on how to install it in Windows, MacOS or Unix platforms.
    
@@ -30,14 +38,8 @@ Follow these instructions:
       If successful, it should return the version number such as `12.84`, if not, the installation is failed.
 
    - On Windows platforms, ensure that ExifTool is added to system's **GLOBAL PATH** as well as the compiler's (e.g. in VSCode) **PATH**.
-   - On Unix platforms, typically used as remote servers, after unzipping the `Image-ExifTool-12.84.tar.gz` file, you can add the following lines to '.bashrc' file for automated configuration:
+   - On Unix platforms (which are typically used as remote servers), after unzipping the `Image-ExifTool-12.84.tar.gz` file, you can add the following lines to '.bashrc' file for automated configuration:
       ```
       export PERL5LIB=/'the path to'/Image-ExifTool-12.84/install/share/perl5
       export PATH=/'the path to'/Image-ExifTool-12.84/install/bin:$PATH
       ```    
-
-4. Install dependencies
-
-    ```
-    pip install -r requirements.txt
-    ```
