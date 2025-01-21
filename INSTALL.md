@@ -19,7 +19,8 @@ Follow these instructions:
 3. Install [ExifTool](https://exiftool.org/) for extracting Exif metadata from raw images.
    
    You can install ExifTool by following the [official installation guide](https://exiftool.org/install.html) on how to install it in Windows, MacOS or Unix platforms.
-   Also, here I offer some hints:
+   
+   Below, I've also provided some helpful tips:
 
    - We test our code with ExifTool version of 12.84, which means the latest version bigger than 12.84 should work fine too.
    - You can verify if ExifTool is correctly installed by running the following command:
@@ -35,7 +36,7 @@ Follow these instructions:
       export PATH=/path/to/Image-ExifTool-12.84/install/bin:$PATH
       ```    
 
-4. Install dependencies
+5. Install dependencies
 
     ```
     pip install -r requirements.txt
