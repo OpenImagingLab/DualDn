@@ -22,7 +22,7 @@ Follow these instructions:
    
    Below, I've also provided some helpful tips:
 
-   - We test our code with ExifTool version of 12.84, which means the latest version bigger than 12.84 should work fine too.
+   - We have tested our code with ExifTool version 12.84, so any version newer than 12.84 should work as well.
    - You can verify if ExifTool is correctly installed by running the following command:
       ```
       exiftool -ver
