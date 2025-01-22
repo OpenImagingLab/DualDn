@@ -26,11 +26,11 @@ Follow these instructions:
     
 4. Install [ExifTool](https://exiftool.org/) for extracting Exif metadata from raw images
    
-   Install ExifTool by following the [official installation guide](https://exiftool.org/install.html) on how to install it in Windows, MacOS or Unix platforms.
+   Install ExifTool by following the [official installation guide](https://exiftool.org/install.html) on how to install it on the Windows, MacOS or Unix platforms.
    
-   Below, I've also provided some helpful tips:
+   Below, fyi, some helpful tips are provided:
 
-   - We have tested our code with ExifTool version 12.84, so any version newer than 12.84 should work as well.
+   - DualDn is tested with ExifTool version 12.84, so any version newer than 12.84 should work as well.
    - Check if ExifTool is correctly installed by running the following command:
       ```
       exiftool -ver
