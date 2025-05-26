@@ -34,6 +34,10 @@
 
 <hr />
 
+## Try and Play with DualDn on Colab!
+
+[<img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>](https://colab.research.google.com/github/OpenImagingLab/DualDn/blob/main/docs/DualDn_Demo.ipynb) -> A simple inference demo for denoising **ANY** in-the wild raw images by **ANY** cameras.
+
 ## Previous Methods
 ### (1) Raw-domain denoising:
 <img src = "docs/static/images/raw.svg"  width="85%">
@@ -54,10 +58,6 @@
 
 ## Installation
 See [INSTALL.md](INSTALL.md) for the installation of environment and dependencies required to run DualDn.
-
-## Try and Play with DualDn on Colab
-
-[<img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>](https://colab.research.google.com/github/OpenImagingLab/DualDn/blob/main/docs/DualDn_Demo.ipynb) -> A simple inference demo for denoising **ANY** in-the wild raw images by **ANY** cameras.
 
 ## Train and Evaluation
 We trained DualDn on a single GPU **ONLY** using: (1) clean raw images, (2) a reasonable noise model. 
