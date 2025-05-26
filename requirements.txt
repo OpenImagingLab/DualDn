@@ -3,7 +3,7 @@ h5py==3.11.0
 kornia==0.7.2
 lmdb==1.4.1
 lpips==0.1.4
-numpy>=1.23.5
+numpy<2.0
 opencv_python==4.9.0.80
 PyYAML==6.0.2
 rawpy==0.21.0
