@@ -4,17 +4,19 @@
 [![ECCV](https://img.shields.io/badge/ECCV-2024-B762C1)]()
 [![paper](https://img.shields.io/badge/arXiv-Paper-<COLOR>.svg)](https://arxiv.org/abs/2409.18783)
 [![supplement](https://img.shields.io/badge/Supplementary-Material-red)](https://mycuhk-my.sharepoint.com/:b:/g/personal/1155231343_link_cuhk_edu_hk/ES8QQePLkZxCia6JwDJGZOEBJnPZmdKVSO1J_3RGtpNUQw)
+[<img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>](https://colab.research.google.com/github/OpenImagingLab/DualDn/blob/main/docs/DualDn_Demo.ipynb)
 <!-- ![visitors](https://visitor-badge.laobi.icu/badge?page_id=OpenImagingLab.DualDn) -->
 
-## 👉 [Project Page (For more visual results)](https://openimaginglab.github.io/DualDn/) <br>
+## [Project Page (For more visual results)](https://openimaginglab.github.io/DualDn/) <br>
 [Ruikang Li](https://github.com/Lyricccco), Yujin Wang, [Shiqi Chen](https://tangeego.github.io/), Fan Zhang, [Jinwei Gu](https://www.gujinwei.org/) and [Tianfan Xue](https://tianfan.info/) <br>
 
 
 #### News
 - **Sept 29, 2024:** Paper accepted at ECCV 2024. 😊
-- **Nov 4, 2024:** Training and inferencing code released. 🌹
-- **Nov 10, 2024:** Pre-trained models and visual results released. Feel free to download! 📝
-- **Nov 15, 2024:** Project page has evolved to the next generation—check it out! 💢
+- **Nov 4, 2024:** Training and inferencing code released. 
+- **Nov 10, 2024:** Pre-trained models and visual results released. Feel free to download! 
+- **Nov 15, 2024:** Project page has evolved to the next generation—check it out! 
+- **May 26, 2025:** Give DualDn a spin—any in-the-wild raw shots from any camera right in your browser with our [online demo](https://colab.research.google.com/github/OpenImagingLab/DualDn/blob/main/docs/DualDn_Demo.ipynb).
 
 #### TODO Lists
 - We have captured a new test set with real_captured RAW images, and we will release a new benchmark for dual-denoising.
@@ -53,8 +55,9 @@
 ## Installation
 See [INSTALL.md](INSTALL.md) for the installation of environment and dependencies required to run DualDn.
 
-## Demo
+## Try and Play with DualDn on Colab
 
+[<img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>](https://colab.research.google.com/github/OpenImagingLab/DualDn/blob/main/docs/DualDn_Demo.ipynb) -> A simple inference demo for denoising **ANY** in-the wild raw images by **ANY** cameras.
 
 ## Train and Evaluation
 We trained DualDn on a single GPU **ONLY** using: (1) clean raw images, (2) a reasonable noise model. 
