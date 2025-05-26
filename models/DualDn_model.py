@@ -10,6 +10,7 @@ import h5py
 import torch
 import numpy as np
 from scipy import io
+from tqdm import tqdm
 from os import path as osp
 from collections import OrderedDict
 
@@ -413,8 +414,13 @@ class DualDn_Model(BaseModel):
         self.metric_results = {metric: 0 for metric in self.metric_results}
 
         cnt = 0
+        bar = tqdm(dataloader,
+            desc=f'{dataset_type} testing', 
+            unit='batch', 
+            ncols=80,
+            leave=False) 
 
-        for _, val_data in enumerate(dataloader):
+        for _, val_data in enumerate(bar, start=1):
             self.feed_test_data(val_data)
             if dataset_type == 'Synthetic':
                 self.syn_test(current_iter, val_opt)
