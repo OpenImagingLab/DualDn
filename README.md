@@ -16,7 +16,7 @@
 - **Nov 4, 2024:** Training and inferencing code released. 
 - **Nov 10, 2024:** Pre-trained models and visual results released. Feel free to download! 
 - **Nov 15, 2024:** Project page has evolved to the next generation—check it out! 
-- **May 26, 2025:** Give DualDn a spin—any in-the-wild raw shots from any camera right in your browser with our <a href="README.md#Try and Play with DualDn on Colab!">online demo</a>.
+- **May 26, 2025:** Give DualDn a spin—any in-the-wild raw shots from any camera right in your browser with our <a href="README.md#try-and-play-with-dualdn-on-colab">online demo</a>.
 
 #### TODO Lists
 - We have captured a new test set with real_captured RAW images, and we will release a new benchmark for dual-denoising.
