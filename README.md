@@ -1,5 +1,5 @@
 # [ECCV2024] DualDn: <br> Dual-domain Denoising via Differentiable ISP
-[![state-of-art | Darmstadt Noise Dataset Benchmark](https://img.shields.io/badge/state--of--art-DND%20Benchmark-FF2D55?style=for-the-badge&labelColor=0A0A0A)](https://noise.visinf.tu-darmstadt.de/benchmark/#results_raw)
+[![state-of-the-art | DND Benchmark](https://img.shields.io/badge/state--of--the--art-DND%20Benchmark-FF2D55?style=for-the-badge&labelColor=0A0A0A)](https://noise.visinf.tu-darmstadt.de/benchmark/#results_raw)
 
 [![ECCV](https://img.shields.io/badge/ECCV-2024-B762C1)]()
 [![paper](https://img.shields.io/badge/arXiv-Paper-<COLOR>.svg)](https://arxiv.org/abs/2409.18783)
